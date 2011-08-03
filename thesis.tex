@@ -23,8 +23,26 @@
 \renewcommand{\postthechapter}{\par\nobreak\vskip 5pt}
 \renewcommand{\postthesection}{~}
 
+\newcommand{\Arg}{\mathop{\mathrm{Arg}}\nolimits}
+\renewcommand{\exp}{\mathop{\mathrm{exp}}\nolimits}
+\renewcommand{\tg}{\mathop{\mathrm{tg}}\nolimits}
+\renewcommand{\arctg}{\mathop{\mathrm{arctg}}\nolimits}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
 
+%Демонстрация полностью настраиваемых окружений типа <<теорема>>.
 
+\newtheorem{lemm}{Лемма}[chapter]
+\def\thelemmstyle{\bfseries}
+\def\oparglemmstyle{\itshape}
+\def\lemmstyle{}
+\def\preoparglemm{(}
+\def\postoparglemm{)}
+
+\newtheorem{remark}{Примечание}[chapter]
+\def\remarkstyle{\itshape}
+\def\theremarkstyle{}
+\def\posttheremark{:}
 
 % Номера страниц сверху и по центру
 %\def\headfont{\small}
@@ -100,6 +118,7 @@
 \input{intro}
 \input{review}
 \input{1}
+\input{2}
 \input{concl}
 
 \bibliography{thesis}
