@@ -1,18 +1,21 @@
-\chapter{Устойчивость скалярного аналога}
-\section{Различные критерии устойчивости матричного уравнения}
+\chapter{Конус устойчивости для линейного дифференциального уравнения с
+запаздыванием}
+\section{Устойчивость скалярного аналога}
 
 Различные критерии устойчивости матричного уравнения
 \begin{equation}\label{main}
     \dot{x}(t) + A\, x(t) +  B\, x(t-\tau) = 0,\quad \tau > 0.
 \end{equation}
-даны в \cite{GuKhar, Kir, KirGal, MFK, MK, Wang}. В \cite{Mats} исследуется
-эта задача для матриц $2\times 2$ специального вида. В этой заметке мы даем
-метод, позволяющую дать полный геометрический обзор тех значений запаздывания
-$\tau$, который обеспечивают устойчивость уравнения \eqref{main}. Метод
-пригоден для уравнений с матрицами $A,B$, которые могут быть приведены одной
-трансформирующей матрицей к треугольному виду. Это в точности класс матриц
-$A,B$, таких что $AB-BA$ нильпотентна \cite{HJ}. Этот класс включает
-все коммутирующие пары матриц $A,B$. 
+даны в
+\cite{Gu_Khar_2003,Kiryanen_1994,Kiryanen_Gal_1989,Mori_Fukuma_Kuwahara_1981,Mori_Kokame_1989,Wang_1992}.
+В \cite{Matsunaga_2009} исследуется эта задача для матриц $2\times 2$ специального вида. 
+В этой заметке мы даем метод, позволяющую дать полный геометрический обзор тех 
+значений запаздывания $\tau$, который обеспечивают устойчивость уравнения
+\eqref{main}. Метод пригоден для уравнений с матрицами $A,B$, которые могут
+быть приведены одной трансформирующей матрицей к треугольному виду. Это в
+точности класс матриц $A,B$, таких что $AB-BA$ нильпотентна 
+\cite{Horn_Johnson_1986}. Этот класс включает все коммутирующие пары матриц
+$A,B$.
 
 \section{Основной результат}
 
@@ -109,15 +112,15 @@ $A,B$ суть соответственно
     \end{array}
 \end{equation}
 
-\begin{figure}[ht]
-    \begin{center}
-        \includegraphics[width=2.2in,height=2.1in]{img/corrections14.eps} 
-        %intersect, intersect1 - 7 пересечений
-        \includegraphics[width=2.4in,height=2.1in]{img/corrections_7.eps}
-        \hskip 40mm (а)\hskip 63mm (б)
-    \end{center}
-\caption{Конус устойчивости и кривая \eqref{pointsMex1} в разных проекциях}
+\begin{figure}[!ht]
+  \centering
+    \subfloat[][]{\label{f:sub1}\includegraphics[width=5cm]{corrections14}}\quad 
+    %intersect, intersect1 - 7 пересечений
+    \subfloat[][]{\label{f:sub2}\includegraphics[width=5cm]{corrections_7}}
+    \caption[]{%
+    Конус устойчивости и кривая \eqref{pointsMex1} в разных проекциях.}
 \end{figure}
+
 
 Точки кривой находятся внутри конуса устойчивости при следующих значениях 
 запаздывания: $\tau\in(0, 0.39)\cup(1.56, 3.17)\cup(5.26, 6.52)\cup(8.96, 
@@ -182,17 +185,20 @@ $A,B$ суть соответственно
 \end{equation}
 
 Построим точки $(\Re b_{j}\tau,\, \Im b_{j}\tau,\, a_{j}\tau), j=\overline{1,
-4}$ и конус устойчивости. Они изображены на Рис.\,2. 
-\begin{figure}[ht]
-    \begin{center}
-        \includegraphics[width=2.2in,height=2.2in]{img/correct4_4_short2.eps}
-        \includegraphics[width=2.2in,height=2.2in]{img/correct4_4_up.eps}
-    \end{center}
-    \caption{Конус устойчивости и $(\Re b_{j}\tau,\, \Im b_{j}\tau,\,
-    a_{j}\tau)$ в разных проекциях.}
+4}$ и конус устойчивости. Они изображены на Рис.\,2.  
+ 
+\begin{figure}[!ht]
+  \centering
+    \subfloat[][]{\includegraphics[width=5cm]{correct4_4_short2}}\quad 
+    \subfloat[][]{\includegraphics[width=5cm]{correct4_4_up}}
+    \caption[]{%
+    Конус устойчивости и кривая  $(\Re b_{j}\tau,\, \Im b_{j}\tau,\,
+    a_{j}\tau)$  в разных проекциях.}
 \end{figure}
 
-Для устойчивости необходимо и достаточно, чтобы все точки $(\Re b_{j}\tau,\,
+
+
+Для устойчивости необходимо и достаточно, чтобы все точки $(\Re b_{j}\tau,\, 
 \Im b_{j}\tau,\, a_{j}\tau)$ находились внутри конуса устойчивости. Две системы
 точек, соответствующие комплексным собственным значениям матрицы $A$, с
 изменением $\tau$ образуют винтовые линии, пересекающие конус устойчивости при
