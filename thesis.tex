@@ -1,4 +1,5 @@
 \documentclass[candidate,subf,href,colorlinks=true
+,draft
 %,times        % шрифт Times как основной
 %,fixint=false % отключить прямые знаки интегралов
 %,classified   % секретно
@@ -22,6 +23,7 @@
 \renewcommand{\postthechapter}{~} % Убираем точку после номера главы
 \renewcommand{\postthechapter}{\par\nobreak\vskip 5pt}
 \renewcommand{\postthesection}{~}
+\renewcommand{\postthesubsection}{~}
 
 \newcommand{\Arg}{\mathop{\mathrm{Arg}}\nolimits}
 \renewcommand{\exp}{\mathop{\mathrm{exp}}\nolimits}
@@ -29,6 +31,12 @@
 \renewcommand{\arctg}{\mathop{\mathrm{arctg}}\nolimits}
 \renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
 \renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+\newtheorem{prop}{Утверждение}
+\newtheorem{note}{Замечание}
+\newtheorem{theorem}{Теорема}
+
+
 
 %Демонстрация полностью настраиваемых окружений типа <<теорема>>.
 
@@ -57,7 +65,6 @@
 
 % Путь к файлам с иллюстрациями 
 \graphicspath{{img/}}
-
 
 \begin{document}
 % Включение файла с общим текстом диссертации и автореферата
@@ -90,15 +97,15 @@
 %\topic{Dummy Title}
 %
 %% Author
-%\author{Author's Name}
+%\author{Tatyana Khokhlova}
 %
-%\specnum{01.04.05}
-%\spec{Optics}
+%\specnum{05.13.18}
+%\spec{mathematics models, numeric methods and program complexes}
 %
 %%\specsndnum{01.04.07}
 %%\specsnd{Condensed matter physics}
 %
-%\sa{I.\,I.~Ivanov}
+%\sa{M.\,M.~Kipnis}
 %\sastatus{Professor}
 %%\sasnd{P.\,P.~Petrov}
 %%\sasndstatus{Professor}
@@ -108,22 +115,23 @@
 %%\sconstatus{Professor}
 %
 %% City & Year
-%\city{Saint Petersburg}
+%\city{Chelaybinsk}
 %\date{\number\year}
 %
 %\maketitle[en]
 
+
 \tableofcontents
 
-\input{intro}
-\input{review}
-\input{1}
-\input{2}
-\input{concl}
+%\input{intro}
+%\input{review}
+%\input{1}
+%\input{2}
+%\input{concl}
 
 \bibliography{thesis}
 \bibliographystyle{gost705s}
 
-%\appendix
-%\input{app-a}
+\appendix
+\input{app-a}
 \end{document}
