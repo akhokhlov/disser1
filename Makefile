@@ -6,7 +6,7 @@
 TARGET?=thesis
 
 
-include ../include/latex.mk
+include include/latex.mk
 
 all:
 	@env TARGET=thesis $(MAKE) ;\

@@ -1,0 +1,648 @@
+\chapter{Устойчивость скалярного аналога}
+
+\section{Предварительные сведения и постановка задачи} \label{p_1_1}
+
+%\subsection{{Уравнение $\dot x(t)+a\, x(t) +  b\, x(t-\tau)=0$ для действительных значений параметров $a, b$}}
+
+Рассмотрим следующее уравнение:
+
+\begin{equation}
+\label{scalar} \dot x\left(t\right) + a\, x(t) +  b\, x(t-\tau) = 0,\quad
+\tau > 0.
+\end{equation}
+
+Будем исследовать проблему устойчивости нулевого стационарного
+решения уравнения \eqref{scalar} при $a, b\in\mathbb{R}$.
+
+Далее будем рассматривать уравнение \eqref{scalar} с начальными
+условиями
+
+\begin{equation}
+\label{cond}  x(t)=\varphi(t),\qquad t\in[-\tau,0],
+\end{equation}
+
+\hangindent=7mm \noindent где $\tau > 0$~--- запаздывание,
+$\varphi(t)$~--- начальная функция.
+
+\bigskip
+
+Будем считать, что начальная функция $\varphi(t)$ кусочно"=непрерывна на~$[-\tau,0]$.
+
+Решением уравнения \eqref{scalar} назовем функцию
+$x(t):[-\tau,\infty)\rightarrow\mathbb{R}$, удов\-лет\-во\-ряющую
+уравнению \eqref{scalar} и условию \eqref{cond}.
+
+\bigskip
+
+Рассмотрим задачу асимптотической устойчивости уравнения \eqref{scalar}
+с действительными коэффициентами $a, b$. При этом уравнение
+\eqref{scalar} считаем устойчивым, если его нулевое решение является
+устойчивым.
+
+Сформулируем известную теорему об области устойчивости этого
+уравнения.
+
+\begin {theorem} \label{theorem_plane}
+Уравнение \eqref{scalar} асимптотически устойчиво тогда и только тогда,
+когда
+\begin{equation}
+\label{3}  a+b>0 \quad \mbox{и} \quad a>S(b),
+\end{equation}
+где кривая $a=S(b)$ задается следующим образом
+\begin{equation}
+\label{4} \left\{
+\begin{array}{l}a(w)=-\dfrac{w}{\tg{w\tau}}\,,
+\medskip\\
+b(w)=\dfrac{w}{\sin{w\tau}}\,,
+\medskip\\
+0<w<\dfrac{\pi}{\tau}\,.
+\end{array}
+\right.
+\end{equation}
+
+\end {theorem}
+
+\bigskip
+
+На Рис.\,\ref{theorem_plane_fig} изображена область
+устойчивости уравнения \eqref{scalar} в плоскости параметров уравнения $(b, a)$.
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3.6in,height=2.8in]{simple1}
+    \end{center}
+    \hangindent=8mm \noindent
+  \caption{Область устойчивости уравнения \eqref{scalar}, указанная в теореме
+  \eqref{theorem_plane}}
+  \label{theorem_plane_fig}
+  \end{figure}
+
+Заметим, что кривая $a=S(b)$ имеет наклонную асимптоту $a=b$ (при
+$w\rightarrow \dfrac{\pi}{\tau}$ данная кривая неограниченно
+приближается к прямой $a=b$, отмеченной на графике пунктиром).
+
+Отметим также, что при $a\,< -\dfrac{1}{\tau}$ уравнение
+неустойчиво независимо от значения параметра $b$.
+
+Другая форма теоремы \eqref{theorem_plane} имеет вид
+
+\begin {theorem} \label{theorem_plane_second}
+Уравнение \eqref{scalar} асимптотически устойчиво тогда и только тогда,
+когда
+\begin{equation}
+\label{new}  -\,a < b < \sqrt{w_{1}^{2}+a^{2}},
+\end{equation}
+где $w_{1}$~--- наименьший положительный корень уравнения $a
+\sin{w\tau} + w \cos{w\tau} \hm{=} 0$.
+\end {theorem}
+
+
+
+
+\section{Устойчивость скалярного уравнения с одним комплексным коэффициентом. Овал устойчивости} \label{p_1_2}
+
+Теперь рассмотрим уравнение \eqref{scalar} при $a\in\mathbb{R}\,,\,
+b\in\mathbb{C}$.
+
+Докажем существование на комплексной плоскости параметра $b$
+уравнения \eqref{scalar} некоторого овала устойчивости, обладающего
+свойством: если точка, соответствующая конкретным параметрам
+уравнения, лежит внутри этого овала, то нулевое
+решение асимптотически устойчиво; если точка лежит вне овала, то
+нулевое решение неустойчиво; если точка лежит на границе овала, то
+нулевое решение устойчиво (не асимптотически).
+
+Итак, имеет место следующая теорема.
+
+\begin{theorem} \label{theorem_scalar}
+Пусть дано уравнение \eqref{scalar}.
+
+\medskip
+
+1) Если $a\,\leq -\frac{1}{\tau}$, то уравнение \eqref{scalar}
+неустойчиво.
+
+\medskip
+
+2) Если $a\,> -\frac{1}{\tau}$, то уравнение \eqref{scalar}
+асимптотически устойчиво тогда и только тогда, когда на
+комплексной плоскости параметра $b$ точка $(\Re b,\, \Im b)$
+находится внутри овала устойчивости с границей
+\begin{equation}
+\label{oval}
+ \left\{
+\begin{array}{l}
+\Re b=-a \cos{w\tau} + w \sin{w\tau},
+\bigskip\\
+\Im b=-a \sin{w\tau} - w \cos{w\tau},
+\bigskip\\
+-w_{1} \leq w \leq w_{1}.
+\end{array}
+\right.
+\end{equation}
+где $w_{1}$ есть наименьший положительный корень уравнения $a
+\sin{w\tau} + w \cos{w\tau} =0$.
+
+\medskip
+
+3) Если $a\,> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
+находится на границе овала устойчивости, то уравнение \eqref{scalar}
+устойчиво (не асимптотически).
+\end {theorem}
+\bigskip
+
+\begin{proof} Для определения границ области
+ устойчивости уравнения \eqref{scalar} на комплексной плоскости параметра $b$ будем использовать метод
+ $\emph{D}$\,-разбиений (\!~\cite{Gryazina&Polyak_2006}), при этом полагаем, что $a$ -
+ фиксированная величина.
+
+Характеристический квазимногочлен уравнения \eqref{scalar} имеет вид:
+\medskip
+
+\begin{equation}\label{char_pol}
+    F(\lambda)=\lambda+a+b\,e^{-\lambda\tau}.
+\end{equation}
+
+Согласно методу  $\emph{D}$\,-разбиений, если точка $(\Re b,\, \Im
+b)$ принадлежит границе области устойчивости, то
+\begin{equation}\label{5}
+    \exists w \quad F(iw)=0, \quad w\in(-\infty,\infty).
+\end{equation}
+
+Получим
+\begin{equation}\label{6}
+    F(iw)=iw+a+b\,e^{-iw\tau}=iw+a+(\Re b+i \Im b)\,(\cos{w\tau}-i\sin{w\tau})=0 .
+\end{equation}
+
+Выделим действительную и мнимую части:
+\smallskip
+
+\begin{equation}
+\label{20}
+ \left\{
+\begin{array}{l}
+\Re F(iw)=a + \Re b\cdot\cos{w\tau} + \Im b\cdot\sin{w\tau}=0,
+\bigskip\\
+\Im F(iw)=w  - \Re b\cdot\sin{w\tau}+ \Im b\cdot\cos{w\tau}=0.
+\end{array}
+\right.
+\end{equation}
+\medskip
+
+Отсюда
+
+\begin{equation}
+\label{11}
+\Re b=-a \cos{w\tau} + w \sin{w\tau},
+\end{equation}
+
+\begin{equation}
+\label{10}
+\Im b = -a \sin{w\tau} - w \cos{w\tau}.
+\end{equation}
+\smallskip
+
+Кривые \eqref{11}, \eqref{10} при $w\in(-\infty,\infty)$ разбивают комплексную плоскость параметра $b$ на бесконечное число областей, соответствующих либо устойчивости, либо неустойчивости уравнения \eqref{scalar}.
+
+\smallskip
+
+На Рис.\,\ref{D-curves} изображены кривые $\emph{D}$\,-разбиения комплексной плоскости параметра $b$ при $w\in(-2.7\,\pi,\; 2.7\,\pi),\; a=1, \tau=1$.
+
+  \begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3.6in,height=2.8in]{d_decomp}
+    \end{center}
+    \hangindent=8mm \noindent
+  \caption{Кривые $\emph{D}$\,-разбиения комплексной плоскости параметра $b$}
+  \label{D-curves}
+  \end{figure}
+
+Чтобы определить, какие области соответствуют устойчивости, а какие неустойчивости, будем рассматривать точки на прямой $\Re
+b$, так как эта прямая проходит через все области.
+
+Сначала рассмотрим точки $\Re b(w)$ при $w\in(-w_{1},\; w_{1})$, где $w_{1}$ есть наименьший положительный корень уравнения
+
+\begin{equation*}
+\Im b(w)=-a\sin{w\tau} - w \cos{w\tau} =0.
+\end{equation*}
+
+Это точки, лежащие на действительной оси внутри овала устойчивости, фигурирующего в формулировке теоремы. Овал изображен на Рис.\,\ref{oval_fig}, а точки $\Re b(w)$ при $w\in(-w_{1},\; w_{1})$ отмечены пунктиром.
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3.6in,height=2.8in]{oval1}
+    \end{center}
+    \hangindent=8mm \noindent
+  \caption{Овал устойчивости уравнения \eqref{scalar}}
+  \label{oval_fig}
+  \end{figure}
+
+Покажем, что эти точки действительно соответствуют устойчивости.
+
+При $w=w_{1}$ и $w=-w_{1}$ получим
+
+\begin{equation}
+\label{13} \left\{
+\begin{array}{l}a(w_{1})=a(-w_{1})=-\dfrac{w_{1}}{\tg{w_{1}\tau}}\,,
+\medskip\\
+b(w_{1})=b(-w_{1})=\dfrac{w_{1}}{\sin{w_{1}\tau}}.
+\end{array}
+\right.
+\end{equation}
+
+\bigskip
+
+При $w=0$ получим $\Re b=-a$. Поэтому при каждом фиксированном $a$ при $w\in(-w_{1},\; w_{1})$ точка $(a(w), b(w))$ на плоскости $(\Re b, a)$ дважды пробегает интервал от точки $M (-\dfrac{w_{1}}{\tg{w_{1}\tau}}\,, \dfrac{w_{1}}{\sin{w_{1}\tau}})$ до точки $N (-a, a)$.
+
+Пример такого интервала приведен на Рис. \eqref{interval}.
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3.6in,height=2.8in]{interval}
+    \end{center}
+    \hangindent=8mm \noindent
+  \caption{Проекция области устойчивости на плоскость $(\Re b, a)$}
+  \label{interval}
+  \end{figure}
+
+
+Это есть интервал между графиками функций $a + b = 0$ и $a = S(b)$, где кривая $a = S(b)$ задается следующим образом
+
+\begin{equation}
+\label{14} \left\{
+\begin{array}{l}a(w)=-\dfrac{w}{\tg{w\tau}}\,,
+\medskip\\
+b(w)=\dfrac{w}{\sin{w\tau}}\,,
+\medskip\\
+0<w<\dfrac{\pi}{\tau}\,.
+\end{array}
+\right.
+\end{equation}
+
+
+Это область соответствует асимптотической устойчивости по Теореме \eqref{theorem_plane}, рассмотренной в предыдущем пункте.
+
+Итак, точки $\Re b(w)$ при $w\in(-w_{1},\; w_{1})$ соответствуют устойчивости, а значит, и вся область
+\begin{equation*}
+ \left\{
+\begin{array}{l}
+\Re b=-a \cos{w\tau} + w \sin{w\tau},
+\bigskip\\
+\Im b=-a \sin{w\tau} - w \cos{w\tau},
+\bigskip\\
+-w_{1} < w \leq w_{1}.
+\end{array}
+\right.
+\end{equation*}
+соответствует асимптотической устойчивости уравнения \eqref{scalar}.
+
+Точки $\Re b(w)$ при $w\in(-\infty,\; -w_{1})$ и при $w\in(w_{1},\;\infty)$ на плоскости $(\Re b, a)$ находятся в областях неустойчивости.
+
+Поэтому из всех областей, на которые кривые $\emph{D}$\,-разбиения разделяют комплексную плоскость параметра $b$, устойчивости соответствует только область с границей \eqref{7}.
+
+Итак, при каждом фиксированном $a$ ($a>-\frac{1}{\tau}$) асимптотической устойчивости соответствует область, ограниченная кривой \eqref{7}. Точки на границе соответствуют устойчивости уравнения \eqref{1}, но не асимптотической. При $a\leq-\frac{1}{\tau}\;$ уравнение \eqref{scalar} неустойчиво.
+
+Теорема доказана.
+\end{proof}
+
+\begin{remark}
+Положение овала устойчивости на плоскости параметра $b$ зависит от значения $a$.
+\end{remark}
+
+Так, левая вершина овала на плоскости параметра $b$ всегда лежит в точке $(-a, 0)$, так как при $w=0$ получим $\Re b~=~-a,\; \Im b = 0$. Правая вершина овала соответствует значениям $w$, равным $w_{1}$ и $-w_{1}$. Действительно,
+
+\begin{equation}
+\label{15}
+ \left\{
+\begin{array}{l}
+\Re b(w_{1})= \Re b(-w_{1})= \dfrac{w_{1}}{\sin{w_{1}\tau}}\,,
+\medskip\\
+\Im b(w_{1})= \Im b(-w_{1})=0.
+\end{array}
+\right.
+\end{equation}
+
+Как было показано выше, правая вершина овала при различных значениях $a$ на плоскости $(\Re b,\,a)$ пробегает кривую $a=S(b)$, поэтому при $a>-\frac{1}{\tau}\;$ числа $\Re b\,(w_{1})$ всегда принимает положительные значения, большие, чем $-a$.
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=1.5in,height=1.2in]{negative_a}
+    \includegraphics[width=1.5in,height=1.2in]{zero_a}
+    \includegraphics[width=1.5in,height=1.2in]{positive_a}
+           \end{center}
+           \hskip 30mm (1)\hskip 35mm (2)\hskip 35mm (3)
+    \hangindent=8mm \noindent
+  \caption{Овал устойчивости: (1) $-\frac{1}{\tau}<a<0,\; (2)\, a=0,\; (3)\, a>0$}
+  \label{different_a}
+  \end{figure}
+
+
+На Рис. \eqref{different_a} на комплексной плоскости параметра $b$ изображены овалы устойчивости при различных значениях параметра $a$. Так, при отрицательных $a$ овал полностью расположен в правой полуплоскости, при $a=0$ правая вершина овала лежит в начале координат, а при $a>0$ граница овала находится в обеих полуплоскостях.
+
+
+
+\section {Конус устойчивости} \label{p_1_3}
+
+Для исследования устойчивости уравнения \eqref{scalar}
+определим в пространстве параметров уравнения $(\Re
+b,\, \Im b,\,a)$ некоторую поверхность, которую назовем конусом устойчивости.
+
+\begin{determine}\label{defin_cone}
+Конусом устойчивости для уравнений \eqref{scalar} и \eqref{main} назовем множество точек $M=(u_1,u_2,u_3)\in \mathbb{R}^3$, таких, что
+\begin{equation}\label{cone}
+ \left\{
+\begin{array}{l}
+u_1=-a \cos{\omega} + \omega \sin{\omega},\\
+u_2=a \sin{\omega} + \omega \cos{\omega},\\
+u_3 = a,
+\end{array}
+\right.
+\end{equation}
+где действительные параметры $a, \omega$ подчинены ограничениям
+\begin{equation}\label{preimage}
+ \left\{
+\begin{array}{l}
+a\geqslant -\dfrac{\omega}{\tan{\omega}},\\[2mm]
+-\pi<\omega<\pi .\\
+\end{array}
+\right.
+\end{equation}
+\end{determine}
+
+Единственный конус устойчивости \eqref{cone}, \eqref{preimage} строится для класса всех уравнений вида \eqref{main}.\\
+
+Чтобы записать Теорему \eqref{theorem_scalar} в терминах конуса устойчивости, сделаем в уравнении \eqref{scalar} замену $t=\theta\,\tau$. Получим
+
+\begin{equation}
+\label{5.1} \frac{dx(\theta\tau)}{d(\theta\tau)}+a\, x(\theta\tau) +  b\, x((\theta-1)\tau)=0.
+\end{equation}
+
+Обозначим $x(\theta\tau)=y(\theta)$. Отметим, что
+
+\begin{equation}
+\label{6.1} \frac{dy(\theta)}{d\,\theta}=\frac{dx(\theta\tau)}{d\,\theta}= \frac{dx(\theta\tau)}{d(\theta\tau)}\,\tau,
+\end{equation}
+откуда
+
+\begin{equation}
+\label{7.1} \frac{\dot y_{\theta}(\theta)}{\tau}+a\, y(\theta) +  b\, y(\theta-1)=0.
+\end{equation}
+
+Переобозначив $\theta=t$, получим
+
+\begin{equation}
+\label{8.1} \dot y\left(t\right)+a\tau\, y(t) +  b\tau\, y(t-1)=0.
+\end{equation}
+
+При условии $\tau>0$ уравнение \eqref{8.1} устойчиво тогда и только тогда, когда устойчиво уравнение \eqref{scalar}.
+
+Итак, имеет место следующая теорема.
+
+\begin {theorem} \label{theorem_scalar_cone}
+Пусть дано уравнение \eqref{scalar}.
+
+\medskip
+
+1) Если $a\tau\,\leq -1$, то уравнение \eqref{scalar}
+неустойчиво.
+
+\medskip
+
+2) Если $a\tau\,> -1$, то уравнение \eqref{scalar}
+асимптотически устойчиво тогда и только тогда, когда точка $(\Re b\tau,\, \Im b\tau,\, a\tau)$
+находится внутри конуса устойчивости.
+\medskip
+
+3) Если $a\tau\,> -1$ и точка $(\Re b\tau,\, \Im b\tau,\,a\tau)$
+находится на поверхности конуса устойчивости, то уравнение \eqref{scalar}
+устойчиво (не асимптотически).
+\end{theorem}
+
+
+
+\section{Примеры применения теоремы \eqref{theorem_scalar_cone}}  \label{p_1_4}
+
+Рассмотрим пример применения теоремы.
+
+\bigskip
+
+\textbf{Пример 1.} Пусть дано уравнение \eqref{scalar}, для которого
+
+\begin{equation}
+\label{ex_scalar} a=0.8,\, b=1+0.5\,i
+\end{equation}
+
+Требуется определить, при каких значениях $\tau$ это уравнение устойчиво, а при каких неустойчиво.
+
+\bigskip
+
+Для этого необходимо и достаточно, чтобы точка $(\Re b\tau,\, \Im b\tau,\, a\tau)$
+находилась внутри конуса устойчивости. Построим конус устойчивости и точки  $(\Re b\tau,\, \Im b\tau,\, a\tau)$ при $\tau\in[0, +\infty)$, образующие некоторую прямую. Конус устойчивости и данная прямая изображены на Рис.\eqref{example_scalar_fig}.
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3in,height=2.8in]{ex_new3}
+    \end{center}
+  \caption{Конус устойчивости и точки  $(\Re b\tau,\, \Im b\tau,\, a\tau)$ при $\tau\in[0, 5]$}
+  \label{example_scalar_fig}
+  \end{figure}
+
+
+Прямая пересекает конус устойчивости при $\tau=0$, что соответствует точке $(0, 0, 0)$, и при $\tau=\tau_{0}\approx2.4$. При $\tau\in(0, \tau_{0})$ точка $(\Re b\tau,\, \Im b\tau,\, a\tau)$ лежит внутри конуса устойчивости, поэтому уравнение \eqref{scalar}, \eqref{ex_scalar} асимптотически устойчиво. При  $\tau>\tau_{0}$ точка находится вне конуса устойчивости, поэтому уравнение неустойчиво. При $\tau=\tau_{0}$ уравнение устойчиво (не асимптотически).
+
+
+\section {Устойчивость скалярного уравнения с \\двумя комплексными коэффициентами} \label{p_1_5}
+
+Рассмотрим уравнение:
+
+\begin{equation}
+\label{scalar_complex} \dot x\left(t\right)+\rho_{1}\,e^{i\alpha_{1}}\, x(t) +  \rho_{2}\,e^{i\alpha_{2}}\, x(t-\tau)=0,
+\end{equation}
+где $\rho_{1}, \rho_{2}, \alpha_{1}, \alpha_{2}\in\mathbb{R}$.
+
+\bigskip
+
+Для исследования устойчивости уравнения \eqref{scalar_complex} сделаем замену
+
+\begin{equation}
+\label{change}
+x(t) = y(t)\, e^{(-i \rho_{1} \sin{\alpha_{1}})t}
+\end{equation}
+
+Получим
+
+\begin{equation}
+\label{23}
+\dot
+x(t) =\dot y(t)\, e^{(-i \rho_{1} \sin{\alpha_{1}})t}-i \rho_{1} \sin{\alpha_{1}}\, e^{(-i \rho_{1} \sin{\alpha_{1}})t}\,y(t).
+\end{equation}
+
+Подставим это выражение в уравнение \eqref{scalar_complex}.
+
+\begin{multline}
+\label{24} \dot y(t)\, e^{(-i \rho_{1} \sin{\alpha_{1}})t}+\left(\rho_{1}\,e^{i\alpha_{1}}\,\cdot e^{(-i \rho_{1} \sin{\alpha_{1}})t}-i \rho_{1} \sin{\alpha_{1}}\, e^{(-i \rho_{1} \sin{\alpha_{1}})t}\,\right) y(t) + \\
++ \rho_{2}\,e^{i\alpha_{2}}\, \, e^{(-i \rho_{1} \sin{\alpha_{1}})(t-\tau)}\,y(t-\tau)=0,
+\end{multline}
+
+Домножим данное выражение на $e^{(i \rho_{1} \sin{\alpha_{1}})t}$.
+
+\begin{multline}
+\label{25} \dot y(t) + \left(\rho_{1}\,e^{i\alpha_{1}}\, - i \rho_{1} \sin{\alpha_{1}}\right) y(t) + \\
++ \rho_{2}\,e^{i\alpha_{2}}\, \, e^{i  \rho_{1}\tau \sin{\alpha_{1}}}\,y(t-\tau)=0.
+\end{multline}
+
+
+Итак, после замены получим уравнение
+
+\begin{equation}
+\label{after_change} \dot y\left(t\right)+\rho_{1}\cos{\alpha_{1}}\,\, y(t) +  \rho_{2}\,e^{i(\alpha_{2}+\rho_{1}\tau \sin{\alpha_{1}})}\, y(t-\tau)=0.
+\end{equation}
+
+\bigskip
+
+Так как $|\,e^{(-i \rho_{1} \sin{\alpha_{1}})t}\,|=1$, то уравнение \eqref{19} асимптотически устойчиво тогда и только тогда, когда уравнение \eqref{after_change} асимптотически устойчиво.
+
+Заметим, что задачу устойчивости уравнения \eqref{after_change} можно решить с помощью теоремы \eqref{theorem_scalar_cone}.
+
+Таким образом, имеет место следующая теорема.
+
+\begin {theorem}
+Пусть дано уравнение \eqref{scalar_complex}. Положим
+
+\begin{equation}
+\label{22}
+a = \rho_{1}\cos{\alpha_{1}}, \qquad   b = \rho_{2}\,e^{i(\alpha_{2}+\rho_{1}\tau \sin{\alpha_{1}})}.
+\end{equation}
+
+\medskip
+
+1) Если $a\tau\,\leq -1$, то уравнение \eqref{scalar_complex}
+неустойчиво.
+
+\medskip
+
+2) Если $a\tau\,> -1$, то уравнение \eqref{scalar_complex}
+асимптотически устойчиво тогда и только тогда, когда точка $(\Re b\tau,\, \Im b\tau,\, a\tau)$
+находится внутри конуса устойчивости.
+\medskip
+
+3) Если $a\tau\,> -1$ и точка $(\Re b\tau,\, \Im b\tau, \,a\tau)$
+находится на поверхности конуса устойчивости, то уравнение \eqref{scalar_complex}
+устойчиво (не асимптотически).
+\end {theorem}
+
+
+
+\section{Проверка устойчивости уравнения с комплексными коэффициентами посредством системы неравенств} \label{p_1_6}
+
+Для уравнения \eqref{scalar_complex} сформулируем и докажем теорему, позволяющую делать вывод об устойчивости данного уравнения с помощью системы неравенств, не прибегая при этом к геометрическим процедурам.
+
+Будем использовать функцию $\arg{z}$ комплексного переменного $z$, считая, что $0\leq\arg{z}<2\pi$.
+
+\begin {theorem}
+Пусть дано уравнение \eqref{scalar_complex}.
+
+\medskip
+
+1) Если $\rho_{2}<\rho_{1}\cos{\alpha_{1}}$, то уравнение \eqref{scalar_complex}
+асимптотически устойчиво.
+
+\medskip
+
+2) Если $-\min(1/\tau,\, \rho_{2})<\rho_{1}\cos{\alpha_{1}}<\rho_{2}$, то уравнение \eqref{scalar_complex}
+асимптотически устойчиво тогда и только тогда, когда одновременно выполняются условия:
+
+\begin{equation}
+\label{cond}
+\rho_{2}<\sqrt{\omega_{1}^{2}+\rho_{1}^{2}\cos^{2}{\alpha_{1}}},
+\end{equation}
+где $w_{1}$ есть наименьший положительный корень уравнения $a\sin{w\tau} + w \cos{w\tau} =0$,
+и
+%\begin{equation}
+%\label{С2}
+%\begin{array}{c}
+%0<\arg\,(\exp(i(\alpha_{2}+\rho_{1}\tau \sin{\alpha_{1}})))<\beta \\\mbox{или}\\ 2\pi-\beta<\arg\,(\exp(i(\alpha_{2}+\rho_{1}\tau \sin{\alpha_{1}})))<2\pi,
+%\end{array}
+%\end{equation}
+\begin{equation}\label{cond2} 
+    \arg\,(\exp(i(\alpha_{2}+\rho_{1}\tau \sin{\alpha_{1}})))
+    \in(0,\beta)\cup(2\pi-\beta, 2\pi),
+\end{equation}
+где
+\begin{equation}
+\beta=\arg\,(\exp\,(-i\tau\sqrt{\rho_{2}^{2}-\rho_{1}^{2}\cos^{2}{\alpha_{1}}}))+\gamma,
+\end{equation}
+$$
+\gamma=\left\{
+\begin{array}{l}
+\arctg{\dfrac{\sqrt{\rho_{2}^{2}-\rho_{1}^{2}\cos^{2}{\alpha_{1}}}}{\rho_{1}\cos{\alpha_{1}}}}, \quad \cos{\alpha_{1}}<0,\\
+
+\medskip
+
+\pi - \arctg{\dfrac{\sqrt{\rho_{2}^{2}-\rho_{1}^{2}\cos^{2}{\alpha_{1}}}}{\rho_{1}\cos{\alpha_{1}}}},\quad \cos{\alpha_{1}}>0.
+\end{array}
+\right.
+$$
+3) Если $\rho_{1}\cos{\alpha_{1}}<-\min(1/\tau,\, \rho_{2})$, то уравнение \eqref{scalar_complex}
+неустойчиво.
+\end {theorem}
+
+\begin{proof}
+
+Уравнение \eqref{scalar_complex} асимптотически устойчиво тогда и только тогда, когда асимптотически устойчиво уравнение \eqref{after_change}. Поэтому будем исследовать устойчивость уравнения \eqref{after_change}.
+
+\medskip
+1) При $\rho_{2}< \rho_{1}\cos{\alpha_{1}}$ по Теореме 3 и Замечанию 1 овал устойчивости существует и начало координат лежит внутри овала устойчивости. При этом окружность радиуса $\rho_{2}$ полностью лежит внутри овала устойчивости, что обеспечивает асимптотическую устойчивость уравнения \eqref{after_change}.
+
+\medskip
+2) Пусть $-\min(1/\tau,\, \rho_{2}) < \rho_{1}\cos{\alpha_{1}} < \rho_{2}$. Рассмотрим 2 случая.
+
+\emph{Случай  2.1.} $-\min(1/\tau,\, \rho_{2})< \rho_{1}\cos{\alpha_{1}} < 0$. 
+
+При этом овал устойчивости существует и полностью лежит в правой полуплоскости. 
+Для асимптотической устойчивости необходимо и достаточно выполнение двух условий. 
+Одно из них обеспечивает пересечение окружности радиуса $\rho_{2}$ с овалом устойчивости, 
+что равносильно условию \eqref{cond}. Второе условие связано с тем, 
+что аргумент точки $\exp(i(\alpha_{2} + \rho_{2}\tau \sin{\alpha_{1}}))$ 
+должен находится между аргументом точек $M, N$ пересечения окружности радиуса $\rho_{2}$ 
+с овалом устойчивости. Рассмотрим точку $M$, лежащую в верхней полуплоскости. 
+Отметим, что часть овала устойчивости \eqref{oval}, лежащая в верхней полуплоскости, 
+соответствует отрицательным значениям параметра $\omega$.
+
+
+\begin{multline}
+\arg M= \arg\left(-\rho_{1}\cos\alpha_{1} \exp(i\omega\tau) - i\omega\exp(i\omega\tau) \right) = \\
+= \arg( \exp(i\omega\tau)) + \arg(-\rho_{1}\cos\alpha_{1} - i\omega) =\\
+= \arg( \exp(i\omega\tau)) + \arctg\frac{|\omega|}{\rho_{1}\cos\alpha_{1}}.
+\end{multline}
+
+По Теореме 2 имеем $\omega = \pm \sqrt{\rho_{2}^{2} - \rho_{1}^{2}\cos^{2}\alpha_{1}}$. Поэтому
+\begin{equation}
+\label{argM}
+\arg M = \arg \left(\exp\left(-i\tau \sqrt{\rho_{2}^{2} - \rho_{1}^{2}\cos^{2}\alpha_{1}}\right) \right) +  \arctg\frac{\sqrt{\rho_{2}^{2} - \rho_{1}^{2}\cos^{2}\alpha_{1}}}{\rho_{1}\cos{\alpha_{1}}}.
+\end{equation}
+
+Из \eqref{argM} следует, что второе условие равносильно \eqref{cond2}.
+\medskip
+
+\emph{Случай 2.2.} $0 < \rho_{1}\cos{\alpha_{1}} < \rho_{2}$.
+Так как $\cos{\alpha_{1}} > 0 $, то овал устойчивости существует 
+и начало координат лежит внутри овала устойчивости. 
+Те же требования приводят к условиям \eqref{cond}, \eqref{cond2}. Отметим, что
+при $\cos{\alpha_{1}} > 0 $ получим
+
+\begin{equation}
+\arg(-\rho_{1} \cos{\alpha_{1}} - i\omega) = \pi - \arctg\frac{\sqrt{\rho_{2}^{2} - \rho_{1}^{2}\cos^{2}\alpha_{1}}}{\rho_{1}\cos{\alpha_{1}}}.
+\end{equation}
+
+\medskip
+3) Пусть $\rho_{1}\cos{\alpha_{1}} < -\min(1/\tau,\, \rho_{2})$. Возможны два случая.
+
+\emph{Случай 3.1.} $\rho_{1}\cos{\alpha_{1}} < -\frac{1}{\tau}$. В этом случае по Теореме 3 уравнение неустойчиво.
+
+\emph{Случай 3.2.} $-\frac{1}{\tau} < \rho_{1}\cos{\alpha_{1}} < -\rho_{2}$. При этом овал устойчивости существует и начало координат лежит внутри овала устойчивости. Так как $\rho_{2} < -\rho_{1}\cos{\alpha_{1}}$, то окружность радиуса  $\rho_{2}$ не пересекает овал устойчивости, поэтому уравнение неустойчиво.
+
+Теорема доказана.
+
+\end{proof}
+

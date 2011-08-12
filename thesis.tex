@@ -1,11 +1,11 @@
 \documentclass[candidate,subf,href,colorlinks=true
 ,ams
-%,draft
-%,times        % шрифт Times как основной
-%,fixint=false % отключить прямые знаки интегралов
-%,classified   % секретно
-,libcat       % номер УДК
-%,facsimile    % факсимиле диссертанта
+%,draft         % собирает выходной файл, не включая в него рисунки
+%,times         % шрифт Times как основной
+%,fixint=false  % отключить прямые знаки интегралов
+%,classified    % секретно
+,libcat        % номер УДК
+%,facsimile     % факсимиле диссертанта
 ]{disser}
 
 \usepackage[
@@ -35,7 +35,7 @@
 \renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
 \renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
 
-\newtheorem{prop}{Утверждение}
+\newtheorem{assertion}{Утверждение}
 \newtheorem{note}{Замечание}
 
 
@@ -45,7 +45,7 @@
 \newtheorem{theorem}{Теорема}[chapter]
 \def\thetheoremstyle{\indent\bfseries}
 \def\opargtheoremstyle{\itshape}
-\def\theoremtyle{}
+\def\theoremstyle{\itshape}
 \def\preopargtheorem{(}
 \def\postopargtheorem{)}
 
@@ -55,6 +55,13 @@
 \def\lemmstyle{}
 \def\preoparglemm{(}
 \def\postoparglemm{)}
+
+\newtheorem{prop}{Предложение}[chapter]
+\def\thepropstyle{\indent\bfseries}
+\def\opargpropstyle{\itshape}
+\def\propstyle{\itshape}
+\def\preopargprop{(}
+\def\postopargprop{)}
 
 \newtheorem{determine}{Определение}[chapter]
 \def\determinestyle{\itshape}
@@ -71,6 +78,17 @@
 \def\theexamplestyle{\indent\bfseries}
 \def\posttheexample{.}
 
+% оформление доказательства
+\newenvironment{proof}                  % имя окружения
+{\par\noindent{\bf Доказательство.}}    % команды для \begin
+{\hfill$\scriptstyle\blacksquare$}      % команды для \end
+
+% перенос формул в тексте
+\newcommand*{\hm}[1]{#1\nobreak\discretionary {}%
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+
+
 % Номера страниц сверху и по центру
 %\def\headfont{\small}
 %\pagestyle{headcenter}
@@ -85,73 +103,76 @@
 % Путь к файлам с иллюстрациями 
 \graphicspath{{img/}}
 
+
+
+
 \begin{document}
-% Включение файла с общим текстом диссертации и автореферата
-% (текст титульного листа и характеристика работы).
-\input{common}
+    % Включение файла с общим текстом диссертации и автореферата
+    % (текст титульного листа и характеристика работы).
+    \input{common}
+    
+    % номер копии для грифа секретности
+    %\copynum{1}
+    % класс доступа
+    %\classlabel{Для служебного пользования}
+    
+    % номер УДК
+    \libcatnum{517.929}
+    
+    \title{ДИССЕРТАЦИЯ\\
+    на соискание ученой степени\\
+    кандидата физико-математических наук}
+    
+    \maketitle
+    
+    \begin{comment}
+        %
+        % Titlepage in English
+        %
+        
+        \institution{South Ural State University}
+        
+        \title{PhD Thesis}
+        
+        % Topic
+        \topic{Dummy Title}
+        
+        % Author
+        \author{Tatyana Khokhlova}
+        
+        \specnum{05.13.18}
+        \spec{mathematics models, numeric methods and program complexes}
+        
+        %\specsndnum{01.04.07}
+        %\specsnd{Condensed matter physics}
+        
+        \sa{M.\,M.~Kipnis}
+        \sastatus{Professor}
+        %\sasnd{P.\,P.~Petrov}
+        %\sasndstatus{Professor}
+        
+        % Scientific consultant
+        %\scon{B.\,B.~Baranov}
+        %\sconstatus{Professor}
+        
+        % City & Year
+        \city{Chelaybinsk}
+        \date{\number\year}
+        
+        \maketitle[en]
+    \end{comment}
+    
+    \tableofcontents
+    %\input{intro}
+    %\input{review}
+    %\input{1}
+    %\input{2}
+    %\input{concl}
+    \bibliography{thesis}
+    \bibliographystyle{gost705s}
+    \appendix
+    \input{app-a}
+    \input{app-b}
+    \input{app-c}
 
-% номер копии для грифа секретности
-%\copynum{1}
-% класс доступа
-%\classlabel{Для служебного пользования}
-
-% номер УДК
-\libcatnum{517.929}
-
-\title{ДИССЕРТАЦИЯ\\
-на соискание ученой степени\\
-кандидата физико-математических наук}
-
-\maketitle
-
-\begin{comment}
-    %
-    % Titlepage in English
-    %
-    
-    \institution{South Ural State University}
-    
-    \title{PhD Thesis}
-    
-    % Topic
-    \topic{Dummy Title}
-    
-    % Author
-    \author{Tatyana Khokhlova}
-    
-    \specnum{05.13.18}
-    \spec{mathematics models, numeric methods and program complexes}
-    
-    %\specsndnum{01.04.07}
-    %\specsnd{Condensed matter physics}
-    
-    \sa{M.\,M.~Kipnis}
-    \sastatus{Professor}
-    %\sasnd{P.\,P.~Petrov}
-    %\sasndstatus{Professor}
-    
-    % Scientific consultant
-    %\scon{B.\,B.~Baranov}
-    %\sconstatus{Professor}
-    
-    % City & Year
-    \city{Chelaybinsk}
-    \date{\number\year}
-    
-    \maketitle[en]
-\end{comment}
-
-\tableofcontents
-
-\input{intro}
-\input{review}
-\input{1}
-\input{2}
-\input{concl}
-
-\bibliography{thesis}
-\bibliographystyle{gost705s}
-
-\appendix
-\input{app-a}
 \end{document}
