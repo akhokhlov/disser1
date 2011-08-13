@@ -95,7 +95,7 @@
 %\chapterpagestyle{empty}
 
 % —сылки на работы соискател€ включаютс€ в общий список литературы
-\let\citemy=\cite
+%\let\citemy=\cite
 
 % »спользовать полужирное начертание дл€ векторов 
 \let\vec=\mathbf
@@ -122,8 +122,6 @@
     \title{ƒ»——≈–“ј÷»я\\
     на соискание ученой степени\\
     кандидата физико-математических наук}
-    
-    \maketitle
     
     \begin{comment}
         %
@@ -161,18 +159,19 @@
         
         \maketitle[en]
     \end{comment}
-    
+
+    %\maketitle
     \tableofcontents
     %\input{intro}
     %\input{review}
-    %\input{1}
-    %\input{2}
+    \input{1}
+    \input{2}
     %\input{concl}
     \bibliography{thesis}
     \bibliographystyle{gost705s}
     \appendix
-    \input{app-a}
-    \input{app-b}
-    \input{app-c}
+    %\input{app-a}
+    %\input{app-b}
+    %\input{app-c}
 
 \end{document}
