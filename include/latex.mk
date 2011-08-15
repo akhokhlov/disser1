@@ -54,7 +54,7 @@ clean:
 	echo "  ps_book      build PS booklet (two A5 on A4)" ;\
 	echo "  rtf          convert DVI to RTF" ;\
 	echo "  srcdist      build source distribution" ;\
-	$(MAKE) -s -C fig help
+	$(MAKE) -s -C img help
 
 html: $(TARGET).dvi
 	$(L2H) $(L2HFLAGS) $(TARGET).tex
@@ -116,8 +116,8 @@ $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
 bmtoeps epstoeps epstopdf fixbb optimize pdftopng256 pdftotiffg4:
-	@$(MAKE) -C fig $@
+	@$(MAKE) -C img $@
 
 figclean:
-	@$(MAKE) -C fig clean
+	@$(MAKE) -C img clean
 
