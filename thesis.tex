@@ -87,6 +87,12 @@
 \newcommand*{\hm}[1]{#1\nobreak\discretionary {}%
 {\hbox{$\mathsurround=0pt #1$}}{}}
 
+% вставка кода
+\providecommand{\includecode}[2][pp1]{\subsection{#2.m} \input{#1/#2}}
+
+% подавление висячих строк
+\clubpenalty =10000
+\widowpenalty=10000
 
 
 % Номера страниц сверху и по центру
