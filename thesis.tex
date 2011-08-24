@@ -1,7 +1,7 @@
 \documentclass[candidate,subf,href,colorlinks=true
-,ams
+%,ams
 ,draft         % собирает выходной файл, не включая в него рисунки
-%,times         % шрифт Times как основной
+,times         % шрифт Times как основной
 %,fixint=false  % отключить прямые знаки интегралов
 %,classified    % секретно
 ,libcat        % номер УДК
@@ -18,7 +18,6 @@
 \usepackage{verbatim}
 %\usepackage{amsthm}
 \ifpdf\usepackage{epstopdf}\fi
-
 
 %\renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\tocpostthechapter}{~}
@@ -84,11 +83,11 @@
 {\hfill$\scriptstyle\blacksquare$}      % команды для \end
 
 % перенос формул в тексте
-\newcommand*{\hm}[1]{#1\nobreak\discretionary {}%
+\providecommand*{\hm}[1]{#1\nobreak\discretionary {}%
 {\hbox{$\mathsurround=0pt #1$}}{}}
 
 % вставка кода
-\providecommand{\includecode}[2][pp1]{\subsection{#2.m} \input{#1/#2}}
+\providecommand{\includecode}[2][pp1]{\subsubsection{#2.m} \input{#1/#2}}
 
 % подавление висячих строк
 \clubpenalty =10000
@@ -171,6 +170,13 @@
     %\input{intro}
     %\input{review}
     %\input{1}
+    \input{11}
+    \input{12}
+    \input{13}
+    \input{14}
+    \input{15}
+    \input{16}
+    
     %\input{2}
     %\input{concl}
     \bibliography{thesis}
@@ -179,6 +185,6 @@
     %\input{app-a}
     %\input{app-b}
     %\input{app-c}
-    \input{app-p1}
+    %\input{app-p1}
 
 \end{document}
