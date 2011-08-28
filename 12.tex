@@ -20,43 +20,45 @@ $\varphi(t)$~--- начальная функция.
 удовлетворяющую уравнению~\eqref{scalar} и условию~\eqref{cond}.
 Сформулируем известное утверждение  об~области устойчивости этого уравнения.
 \begin {prop} \label{prop:realab}
-    1) Если $a\leqslant -\frac{1}{\tau}$, то уравнение~\eqref{scalar} неустойчиво.
-    
-    2) Если $a> -\frac{1}{\tau}$, то уравнение~\eqref{scalar} асимптотически устойчиво 
-    тогда и только тогда, когда
-    \begin{equation}
-        \label{3}  \quad -a<b< S(a),
-    \end{equation}
-    где кривая~$b=S(a)$ задается следующим образом:
-    \begin{equation}\label{4} 
-        \left\{
-            \begin{array}{l}
-                a(\omega)=-\dfrac{\omega}{\tg{\omega\tau}}\,,
-                \medskip\\
-                b(\omega)=\dfrac{\omega}{\sin{\omega\tau}}\,,
-                \medskip\\
-                0<\omega<\dfrac{\pi}{\tau}\,.
-            \end{array}
-        \right.
-    \end{equation}
-    3) Если $a> -\frac{1}{\tau}$ и, кроме того, либо $b=-a$, либо $b=S(a)$, то 
-    уравнение~\eqref{scalar} устойчиво (не~асимптотически).\\
-    4) Если $a> -\frac{1}{\tau}$ и, кроме того, либо $b<-a$, либо $b>S(a)$, то 
-    уравнение~\eqref{scalar} неустойчиво. 
+    Следующие утверждения верны.
+    \begin{enumerate}
+    \item Если $a\leqslant -\frac{1}{\tau}$, то уравнение~\eqref{scalar} неустойчиво.
+    \item Если $a> -\frac{1}{\tau}$, то уравнение~\eqref{scalar} асимптотически устойчиво 
+        тогда и только тогда, когда
+        \begin{equation}
+            \label{3}  \quad -a<b< S(a),
+        \end{equation}
+        где кривая~$b=S(a)$ задается следующим образом:
+        \begin{equation}\label{4} 
+            \left\{
+                \begin{array}{l}
+                    a(\omega)=-\dfrac{\omega}{\tg{\omega\tau}}\,,
+                    \medskip\\
+                    b(\omega)=\dfrac{\omega}{\sin{\omega\tau}}\,,
+                    \medskip\\
+                    0<\omega<\dfrac{\pi}{\tau}\,.
+                \end{array}
+            \right.
+        \end{equation}
+    \item Если $a> -\frac{1}{\tau}$ и, кроме того, либо $b=-a$, либо $b=S(a)$, 
+    то уравнение~\eqref{scalar} устойчиво (не~асимптотически).
+    \item Если $a> -\frac{1}{\tau}$ и, кроме того, либо $b<-a$, либо $b>S(a)$, 
+    то уравнение~\eqref{scalar} неустойчиво.
+    \end{enumerate}
 \end {prop}
 
 На рисунке~\ref{theorem_plane_fig} изображена область устойчивости 
 уравнения~\eqref{scalar} в~плоскости параметров уравнения~$(b, a)$.
 
 \begin{figure}[ht]
-    \begin{center}
+    \centering
     \includegraphics[width=3.6in,height=2.8in]{simple1}
-    \end{center}
     \hangindent=8mm \noindent
-  \caption{Область устойчивости уравнения \eqref{scalar}, указанная в Предложении
-  \eqref{prop:realab}}
-  \label{theorem_plane_fig}
-  \end{figure}
+    \caption{
+        Область устойчивости уравнения \eqref{scalar}, указанная 
+        в~предложении~\eqref{prop:realab}}
+    \label{theorem_plane_fig}
+\end{figure}
 
 Заметим, что кривая $b=S(a)$ имеет наклонную асимптоту $a=b$ 
 (при~$\omega \hm{\rightarrow} \dfrac{\pi}{\tau}$ данная кривая неограниченно
@@ -78,7 +80,7 @@ $a> -\frac{1}{\tau}$ называется кривая $b=b(\omega)$ на~комплексной плоскости
         \end{array}
     \right.
 \end{equation}
-где $\omega_{1}$ есть наименьший положительный корень уравнения 
+где $\omega_{1}$~--- наименьший положительный корень уравнения 
 $a\sin{\omega\tau} + \omega \cos{\omega\tau} \hm{=} 0$.
 \end{determine}
 
@@ -87,23 +89,21 @@ $a\sin{\omega\tau} + \omega \cos{\omega\tau} \hm{=} 0$.
 (см.~\cite{Mori&Fukuma&Kuwahara_1981}, Appendix~B).
 
 \begin{theorem} \label{theorem_scalar}
-    Пусть в~уравнении~\eqref{scalar} $a\in\mathbb{R}$. Тогда
-    
-    1) Если $a\,\leqslant -\frac{1}{\tau}$, то уравнение~\eqref{scalar}
+    Пусть в~уравнении~\eqref{scalar} $a\in\mathbb{R}$. Тогда верны следующие утверждения.
+    \begin{enumerate}
+      \item Если $a\,\leqslant -\frac{1}{\tau}$, то уравнение~\eqref{scalar}
     неустойчиво при~любых комплексных~$b$.
-
-    2) Если  $a> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
+    \item Если  $a> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
     находится внутри овала устойчивости для~данного~$a$ 
     (см.~определение~\ref{def:stability_oval}), то уравнение~\eqref{scalar}
     асимптотически устойчиво.
-
-    3) Если  $a> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
+    \item Если  $a> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
     находится на~границе овала устойчивости для данного~$a$, то уравнение~\eqref{scalar}
     устойчиво (не~асимптотически).
-    
-    4)  Если  $a> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
+    \item Если  $a> -\frac{1}{\tau}$ и точка $(\Re b,\, \Im b)$
     находится вне~овала устойчивости для данного~$a$, то уравнение~\eqref{scalar}
     неустойчиво.
+    \end{enumerate}
 \end {theorem}
 
 \begin{proof} Для определения границ области устойчивости уравнения \eqref{scalar} 
@@ -147,7 +147,7 @@ $\exists \omega \quad F(i\omega)=0, \quad \omega\in(-\infty,\infty)$.
 
 На рисунке~\ref{D-curves} изображены кривые ${D}$\,-раз\-бие\-ния комплексной 
 плоскости параметра~$b$ при~$\omega\in(-2.7\,\pi,\; 2.7\,\pi),\; a=1, \tau=1$.
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=3.6in,height=2.8in]{d_decomp}
     \caption{Кривые ${D}$\,-разбиения комплексной плоскости параметра $b$}
