@@ -17,13 +17,13 @@
 где $A_{T}$ и $B_{T}$~--- нижние треугольные матрицы с~элементами соответственно 
 $\lambda_{j\,s}, \mu_{j\,s}\,(1 \leqslant  j,\, s \leqslant  m)$. 
 Построим систему точек 
-$M_j=(u_{1j},u_{2j},u_{3j})$, $(1\leqslant j \leqslant m)$ 
+$M_j=(u_{1j},u_{2j},u_{3j})$, $(1\leqslant j \leqslant m)$,
 так, что
 \begin{equation}\label{pointsM}
     \begin{array}{l}
         u_{1j} = \tau \Re ( \mu_{jj} \, \exp({i\tau \Im \lambda_{jj}})),  \\
         u_{2j} = \tau \Im ( \mu_{jj} \, \exp({i\tau \Im \lambda_{jj}})),  \\
-        u_{3j} = \tau \Re \lambda.
+        u_{3j} = \tau \Re \lambda_{jj}.
     \end{array}
 \end{equation}
 Уравнение~\eqref{maineqmatrix_copy} асимптотически устойчиво тогда и только тогда, 
@@ -195,22 +195,50 @@ $(\Re b_{j}\tau,\, \Im b_{j}\tau,\, a_{j}\tau)$
 Если $\Re \lambda_{jj} \neq 0$, $\mu_{jj}\neq 0$, то другие $n$~конусов 
 зададим формулами
 \begin{equation}\label{cones_for_dis}
-    K_j: \quad (\Re \lambda_{jj})^2(u_{11}^2+u_{22}^2=|\mu_{jj}|^2u_3^2, \quad 1\leqslant j\leqslant n,
+    K_j: \quad (\Re \lambda_{jj})^2(u_{11}^2+u_{22}^2)=|\mu_{jj}|^2u_3^2, \quad 1\leqslant j\leqslant n,
 \end{equation}
-где~$\lambda_{jj},\,\mu_{jj}$~--- диагональные элементы матриц~$A,B$ соответственно. 
+где~$\lambda_{jj},\mu_{jj}$ диагональные элементы матриц~$A,B$ соответственно. 
 
 На~конусах~$K_j$ лежат конические спирали~\ref{otherpointsM}, 
 указанные в~теореме~\ref{th:stab1} (спираль вырождается в~прямую, если $\Im \lambda_{jj}=0$).
 Если $\Re \lambda_{jj}<0$, то $u_3<0$ в~\ref{otherpointsM}, и тогда точки~$M_j$ 
 выходят из~$K^1$ при~неограниченном увеличении~$\tau$ (при $\mu_{jj}\neq 0$), 
 что влечёт неустойчивость уравнения~\eqref{maineqmatrix_copy} 
-Следовательно, асимптотическая устойчивость~\eqref{maineqmatrix_copy} имеет место 
+Следовательно, асимптотическая устойчивость~\eqref{maineqmatrix_copy}, независимая от запаздывания $\tau$, имеет место 
 тогда и только тогда, когда для любого~$j$ ($1\leqslant j\leqslant n$ )  
 $\Re \lambda_{jj}>0$ и конус~$K^j$ лежит внутри~$K^2$, то~есть 
 \begin{equation}\label{dis_condition}
     |\mu_{jj}| < \Re \lambda_{jj}.     
 \end{equation}
-Автору неизвестно, есть~ли условие~\ref{dis_condition}  в~литературе, 
+Итак, мы доказали следующую теорему.
+
+\begin{theorem}\label{th:delayindependentstab}
+Пусть $A, B, S\in \mathbb{R}^{m\times m}$ и $S^{-1}AS=A_{T}$ и $S^{-1}BS=B_{T}$,
+где $A_{T}$ и $B_{T}$~--- нижние треугольные матрицы с~элементами соответственно 
+$\lambda_{j\,s}, \mu_{j\,s}\,(1 \leqslant  j,\, s \leqslant  m)$. 
+Для того, чтобы уравнение ~\eqref{maineqmatrix_copy} было асимптотически  устойчивым при любом запаздывании $\tau\geqslant 0$, необходимо  и достаточно выполнение условия \eqref{dis_condition}.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Автору неизвестно, есть~ли условие~\eqref{dis_condition}  в~литературе, 
 кроме статьи автора совместно с~научным руководителем и 
 В.\,В.~Малыгиной~\cite{Khokhlova&Kipnis&Malygina_2011}. Другое, не~столь удобное 
 условие устойчивости, независимой от~запаздывания 
