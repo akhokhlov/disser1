@@ -1,7 +1,7 @@
 \documentclass[candidate,subf,href,colorlinks=true
 %,ams
 %,draft         % собирает выходной файл, не включая в него рисунки
-,times         % шрифт Times как основной
+%,times         % шрифт Times как основной
 %,fixint=false  % отключить прямые знаки интегралов
 %,classified    % секретно
 ,libcat        % номер УДК
@@ -97,7 +97,7 @@
 % Привязка нумерации формул к разделам.
 %\numberwithin{equation}{section}
 % Сквозная нумерация
-%\renewcommand{\labelenumii}{\arabic{enumi}.} 
+%\renewcommand{\labelenumii}{\arabic{enumi}.}
 %\captionsetup{figurewithin=none}
 
 
@@ -109,10 +109,10 @@
 % Ссылки на работы соискателя включаются в общий список литературы
 \let\citemy=\cite
 
-% Использовать полужирное начертание для векторов 
+% Использовать полужирное начертание для векторов
 \let\vec=\mathbf
 
-% Путь к файлам с иллюстрациями 
+% Путь к файлам с иллюстрациями
 \graphicspath{{img/}}
 
 
@@ -122,53 +122,53 @@
     % Включение файла с общим текстом диссертации и автореферата
     % (текст титульного листа и характеристика работы).
     \input{common}
-    
+
     % номер копии для грифа секретности
     %\copynum{1}
     % класс доступа
     %\classlabel{Для служебного пользования}
-    
+
     % номер УДК
     \libcatnum{517.929}
-    
+
     \title{ДИССЕРТАЦИЯ\\
     на соискание учёной степени\\
     кандидата физико-математических наук}
-    
+
     \begin{comment}
         %
         % Titlepage in English
         %
-        
+
         \institution{South Ural State University}
-        
+
         \title{PhD Thesis}
-        
+
         % Topic
         \topic{Dummy Title}
-        
+
         % Author
         \author{Tatyana Khokhlova}
-        
+
         \specnum{05.13.18}
         \spec{mathematics models, numeric methods and program complexes}
-        
+
         %\specsndnum{01.04.07}
         %\specsnd{Condensed matter physics}
-        
+
         \sa{M.\,M.~Kipnis}
         \sastatus{Professor}
         %\sasnd{P.\,P.~Petrov}
         %\sasndstatus{Professor}
-        
+
         % Scientific consultant
         %\scon{B.\,B.~Baranov}
         %\sconstatus{Professor}
-        
+
         % City & Year
         \city{Chelaybinsk}
         \date{\number\year}
-        
+
         \maketitle[en]
     \end{comment}
 
@@ -187,7 +187,7 @@
     %\input{14}
     %\input{15}
     %\input{16}
-    
+
     %\input{concl}
     \bibliography{thesis}
     \bibliographystyle{gost705s}
