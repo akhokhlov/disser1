@@ -67,7 +67,12 @@ end
 % Check for even.
 if mod(length(result_set), 2) == 1
     %disp('WARNING: stability interval has the odd lenth!!!');
-	result_set = [0 result_set];
+%     if result_set(1) == 0
+%         result_set = result_set(2:end);
+%     else
+%     	result_set = [0 result_set];
+%     end
+    	result_set = [0 result_set];
 end
 
 result = result_set;
