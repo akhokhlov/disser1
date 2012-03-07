@@ -44,7 +44,7 @@ if "%psnupflags%"==""    set psnupflags=-2 -pA4
 if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape
 
 if "%clext%"==""    set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log ^
-	*.dvi *.tmp *.pdf *.ps
+	*.dvi *.tmp *.ps
 if "%clfiles%"==""  set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
 if "%prereq%"=="" set prereq=*.tex *.bib
@@ -200,7 +200,7 @@ goto :eof
 goto :eof
 
 :figclean
-	cd fig & call nomake.cmd clean & cd ..
+	cd img & call nomake.cmd clean & cd ..
 goto :eof
 
 :fixbb
