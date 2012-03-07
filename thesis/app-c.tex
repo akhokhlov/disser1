@@ -1,0 +1,447 @@
+\chapter{Устойчивость матричного уравнения, моделирующего динамику нейронных сетей Хопфилда}
+
+\section{Предварительные сведения и постановка задачи}
+
+\section {Лемма к основной теореме для матричного уравнения}
+
+Для доказательства теоремы об устойчивости матричного уравнения нам понадобится следующая лемма.
+
+\begin{lemm}
+Пусть $\exists C>0, \alpha>0 \quad |f(t)|\leq Ce^{-\alpha \,t}$. Пусть даны две задачи:
+
+\begin{equation}
+\label{29}
+ %\left\{
+\begin{array}{l}
+\dot x(t)+a\, x(t) +  b\, x(t-\tau)=f(t),
+\bigskip\\
+x(t)=\varphi(t),\quad t\in[-\tau,0]
+\end{array}
+%\right.
+\end{equation}
+
+и
+
+\begin{equation}
+\label{30}
+% \left\{
+\begin{array}{l}
+\dot x(t)+a\, x(t) +  b\, x(t-\tau)=\varphi^{\ast}(t) + f(t),
+\bigskip\\
+\varphi^{\ast}(t)=\left\{
+\begin{array}{l}
+-b \,\varphi(t-\tau),\quad t\in[0,\tau],\\
+0, \quad t>\tau,
+\end{array}
+\right.
+\bigskip\\
+x(t)\equiv 0,\quad t\in[-\tau,0],
+\end{array}
+%\right.
+\end{equation}
+где $\varphi(t): [-\tau, 0]\rightarrow \mathbb{R}.\;$  Тогда для любого $t>0$ решения задач \eqref{29} и \eqref{30} совпадают.
+\end{lemm}
+
+\begin{proof}
+
+Проведём доказательство утверждения леммы по индукции. В качестве базы индукции сравним решение задачи \eqref{29}, которое обозначим $x_{1}(t)$, и решение задачи \eqref{30}, которое обозначим $x_{2}(t)$, при  $t\in[0,\tau]$.
+
+Заметим, что
+
+\begin{equation}
+\label{31}
+\dot x(t)+a\, x(t) =  (x(t)\,e^{a t})' e^{-a t},
+\end{equation}
+
+Поэтому уравнение задачи \eqref{29} можно записать следующим образом:
+
+\begin{equation}
+\label{32}
+(x\,e^{a t})'=e^{a t} (-  b\, x(t-\tau)+f(t)).
+\end{equation}
+
+Тогда решение этой задачи имеет вид:
+
+\begin{multline}
+\label{33}
+x_{1}(t)= x(0)+ e^{-a t}\int\limits_0^t {e^{a s} \left(-  b\, x(s-\tau)+f(s) \right)}ds=\\
+=x(0)-b\, e^{-a t}\int\limits_0^t e^{a s} x(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds=\\
+=x(0)-b\, e^{-a t}\int\limits_0^t e^{a s} \varphi(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds.
+\end{multline}
+
+Аналогично получим решение задачи \eqref{30}:
+
+\begin{multline}
+\label{34}
+x_{2}(t)= x(0)+ e^{-a t}\int\limits_0^t {e^{a s} \left(-  b\, x(s-\tau)+\varphi^{\ast}(s)+f(s) \right)}ds=\\
+=x(0)-b \,e^{-a t}\int\limits_0^t e^{a s} x(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} \varphi^{\ast}(s)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds=\\
+=x(0)-b\, e^{-a t}\int\limits_0^t e^{a s} \varphi(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds.
+\end{multline}
+
+Итак, $x_{1}(t)=x_{2}(t)$ при $t\in[0,\tau]$.
+
+\bigskip
+
+Пусть предположение индукции состоит в том, что $x_{1}(t)=x_{2}(t)$ при $t\in[\tau (n-1),\,\tau n]$, где $n\in\mathbb{N}$.
+
+Проведём шаг индукции. Докажем, что $x_{1}(t)=x_{2}(t)$ при $t\in[\tau n,\,\tau (n+1)]$.
+
+Решение  задачи \eqref{29} выглядит следующим образом:
+
+\begin{equation}
+\label{35}
+x_{1}(t) = x(0)-b\, e^{-a t}\int\limits_0^t e^{a s} x(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds.
+\end{equation}
+
+Решение задачи \eqref{30} будет иметь вид:
+
+\begin{multline}
+\label{36}
+x_{2}(t) = x(0)-b \,e^{-a t}\int\limits_0^t e^{a s} x(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} \varphi^{\ast}(s)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds=\\
+=x(0)-b\, e^{-a t}\int\limits_0^t e^{a s} x(s-\tau)ds + e^{-a t}\int\limits_0^t e^{a s} f(s)ds.
+\end{multline}
+
+Отметим, что $s-\tau\in[\tau (n-1),\tau n]$ при $s\in[0, t], \, t\in[\tau n,\tau (n+1)]$. По предположению индукции $x_{1}(t)=x_{2}(t)$ при $t\in[\tau (n-1),\,\tau n]$. Значит, второе слагаемое в выражении $x_{1}(t)$ равно второму слагаемому в $x_{2}(t)$.
+
+\medskip
+
+Итак, $x_{1}(t)=x_{2}(t)$ при $t\in[\tau n,\,\tau (n+1)]$.
+
+Лемма доказана.
+
+\end{proof}
+
+
+
+\section {Теорема об устойчивости матричного уравнения в терминах конуса устойчивости}
+
+\begin{theorem} \label{main_theorem}
+Пусть $A, B, S\in \mathbb{R}^{m\times m}$ и $S^{-1}AS=A_{T}$ и $S^{-1}BS=B_{T}$, где $A_{T}$ и $B_{T}$ --- нижние треугольные матрицы с элементами соответственно $\lambda_{j\,s}, \mu_{j\,s}\,(1 \leqslant  j,\, s \leqslant  m)$. Построим систему точек $M_j=(u_{1j},u_{2j},u_{3j})$, $(1\leqslant j \leqslant m)$, так, что
+\begin{equation}\label{pointsM}
+\begin{array}{l}
+u_{1j} = \tau |\mu_{jj}| \cos (\arg \mu_{jj}+\tau  \Im \lambda_{jj}) , \\
+u_{2j} = \tau |\mu_{jj}| \sin (\arg \mu_{jj}+\tau \Im \lambda_{jj}), \\
+u_{3j} = \tau \Re \lambda_{jj}.
+\end{array}
+\end{equation}
+Уравнение \eqref{main} асимптотически устойчиво тогда и только тогда, когда все точки $M_j$ $(1\leqslant j \leqslant m)$
+находятся внутри конуса устойчивости (см. Определение \ref{defin_cone}).
+Если хотя бы одна точка $M_j$  $(1\leqslant j \leqslant m)$ лежит вне конуса устойчивости, то уравнение \eqref{main}
+неустойчиво.
+\end{theorem}
+
+\noindent
+\begin{proof}
+
+Умножим \eqref{main} на $S^{-1}$ слева. Изменим масштаб времени, положив $t=\theta\tau$. Сделаем замену $x(t)=Sy(\theta)$. Получим
+\begin{equation}\label{medium}
+\dot{y}(\theta)+\tau A_T y(\theta)+\tau B_T y(\theta-1)=0.
+\end{equation}
+Возвратим имя $t$ переменной $\theta$, положим $y=(y_1,\ldots ,y_m)^T$ и выпишем \eqref{medium} как треугольную систему скалярных уравнений $(1\leqslant j\leqslant m)$
+\begin{equation}\label{mediumscalar}
+\dot{y}_j+\tau \lambda_{jj} y_j+ \tau \mu_{jj} y_j(t-1)=-\tau\sum_{k<j} \lambda_{jk}y_k +\mu_{jk} y_k(t-1).
+\end{equation}
+В \eqref{mediumscalar} сделаем замену $y_j=\exp(-i\Im \lambda_{jj}t)z_j$ и умножим \eqref{mediumscalar} на
+$\exp(-i\Im \lambda_{jj}t)$. Получим треугольную систему  с действительными коэффициентами при $z_j$ $(1\leqslant j\leqslant m)$:
+\begin{equation}\label{triangle}
+\dot{z}_j+\tau \Re\lambda_{jj} z_j+ \tau \mu_{jj} \exp(i\tau \Im \lambda_{jj}) z_j(t-1) = \sum_{k<j} \nu_{jk}z_k +\eta_{jk} z_k(t-1),
+\end{equation}
+где $\nu_{jk},\eta_{jk}$ --- некоторые постоянные.
+Наряду с \eqref{triangle} рассмотрим диагональную систему
+\begin{equation}\label{diagonal}
+\dot{z}_j+\tau \Re\lambda_{jj} z_j+ \tau \mu_{jj} \exp(i\tau \Im \lambda_{jj}) z_j(t-1)=0,  \quad  1\leqslant j\leqslant m.
+\end{equation}
+Пусть все точки $M_j=(u_{1j},u_{2j},u_{3j})$, определённые
+равенством \eqref{pointsM}, лежат внутри конуса устойчивости. В сечении конуса плоскостью $u_3=u_{3j}\in\mathbb{R}$ получим овал (см. \eqref{cone}, \eqref{preimage})
+\begin{equation}\label{oval_matr}
+ \left\{
+\begin{array}{l}
+u_1=-u_{3j} \cos{\omega} + \omega \sin{\omega},\\
+u_2=u_{3j} \sin{\omega} + \omega \cos{\omega},  \quad -\omega_1\leqslant \omega \leqslant \omega_1,
+\end{array}
+\right.
+\end{equation}
+где $\omega_1\in (0, \pi)$  есть корень уравнения $u_{3j}=-\omega/ \tan\omega$. Точка $M_{*j}=(u_{1j}, u_{2j})\in \mathbb{R}^2$ лежит внутри этого овала.
+Ввиду этого, как хорошо известно (см. %\cite{Kir}
+, \cite[Appendix B]{Mori&Fukuma&Kuwahara_1981}),
+система уравнений \eqref{diagonal} асимптотически устойчива.
+
+Перейдём к системе \eqref{triangle}. Первое из уравнений \eqref{triangle} 
+совпадает с первым уравнением системы \eqref{diagonal}, и, следовательно, 
+асимптотически устойчиво, а поэтому все его решения экспоненциально убывают. 
+Во всех остальных уравнениях системы  \eqref{triangle} мы последовательно видим 
+асимптотически устойчивые левые части и экспоненциально убывающие правые части. 
+Поэтому все их решения экспоненциально убывают \cite{Azbelev&Simonov_2002}. Получаем, что система
+\eqref{triangle}, а, следовательно, и \eqref{main} асимптотически устойчива. 
+
+Пусть точка $M_{j}=(u_{1j}, u_{2j},u_{3j})$, определённая равенством \eqref{pointsM}, лежит на поверхности конуса устойчивости \eqref{cone}, \eqref{preimage} или вне его. Не теряя общности, можем считать, что $j=1$. В сечении конуса плоскостью $u_3=u_{31}\in\mathbb{R}$ получим овал \eqref{oval_matr}. Если точка $M_{*1}=(u_{11}, u_{21})$ лежит на границе овала, то первое уравнение системы \eqref{triangle}  не является асимптотически устойчивым, поскольку его характеристическое уравнение  в этом случае имеют чисто мнимые  корни.  Если $M_{*1}$  лежит вне овала, то уравнение \eqref{triangle} при $j=1$ вообще неустойчиво (см. \cite{Kiryanen_1994}, \cite[Appendix B]{Mori&Fukuma&Kuwahara_1981}).  Но система \eqref{triangle} (асимптотически) устойчива тогда и только тогда, когда (асимптотически) устойчива система \eqref{main}. Теорема доказана.
+
+\end{proof}
+
+%\begin{note}
+%Если хотя бы одна точка $(\Re b_{j}\tau,\, \Im b_{j}\tau, \,a_{j}\tau)$
+%находится на поверхности конуса устойчивости, а остальные внутри конуса, то уравнение \eqref{26} может быть
+%устойчивым (не асимптотически) или неустойчивым.
+%\end{note}
+
+
+
+\section{Примеры применения теоремы \eqref{main_theorem} для матриц второго порядка}
+
+Рассмотрим примеры применения доказанной теоремы.
+
+\bigskip
+
+\textbf{Пример 2.} Пусть дано уравнение
+
+ \begin{equation}
+\label{10.1} \dot x\left(t\right)+A\, x(t) +B\, x(t-\tau)=0,
+\end{equation}
+где
+\begin{equation}
+\label{matr}
+A=\begin{pmatrix}
+\cos{\alpha}&-\sin{\alpha}\\
+\sin{\alpha}&\cos{\alpha}
+\end{pmatrix} \qquad
+B=\begin{pmatrix}
+\cos{\beta}&-\sin{\beta}\\
+\sin{\beta}&\cos{\beta}
+\end{pmatrix}
+\end{equation}
+при $\alpha=0.8,\, \beta=0.4$.
+
+Требуется определить, при каких значениях $\tau$ это уравнение устойчиво, а при каких неустойчиво.
+
+\bigskip
+
+Собственные числа матриц $A$ и $B$ имеют вид
+
+\begin{equation}
+\label{11.1} \lambda_{1, 2}=0,6967\pm0,7174i,\quad
+\mu_{1, 2}=0,9211\pm0,3894i.
+\end{equation}
+
+
+При этом
+
+\begin{equation}
+\label{12.1}
+\begin{array}{l}
+ a_{1}=|\lambda_{1}|\cos{\arg{\lambda_{1}}}=\Re{\lambda_{1}}=0.6967, \\
+a_{2}=|\lambda_{2}|\cos{\arg{\lambda_{2}}}=\Re{\lambda_{2}}=0.6967.
+\end{array}
+\end{equation}
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3in,height=3in]{correct}
+    \end{center}
+  \caption{Конус устойчивости и точки  $(\Re b_{j}\tau,\, \Im b_{j}\tau,\, a_{j}\tau),j=1,2,\tau\in[0, 7]$}
+  \label{fig1}
+  \end{figure}
+
+\begin{equation}
+\label{14.1}
+\begin{array}{c}
+b_{1} = |\mu_{1}|\,\exp(i(\arg \mu_{1}+|\lambda_{1}|\tau \sin{\arg \lambda_{1}}))=\exp(i(\beta+\tau\Im{\lambda_{1}}))=\\=\exp(i(0.4+0.7174\tau)),\\
+
+\smallskip
+b_{2} = |\mu_{2}|\,\exp(i(\arg \mu_{2}+|\lambda_{2}|\tau \sin{\arg \lambda_{2}}))=\exp(i(-\beta+\tau\Im{\lambda_{2}}))=\\=\exp(-i(0.4+0.7174\tau)).
+\end{array}
+\end{equation}
+
+Построим точки $(\Re b_{1}\tau,\, \Im b_{1}\tau,\, a_{1}\tau)$ и $(\Re b_{2}\tau,\, \Im b_{2}\tau,\, a_{2}\tau)$ при $\tau~\in~[0, 7]$ и проследим их расположение относительно конуса устойчивости. Системы точек и конус устойчивости изображены на Рис.\,7.
+
+
+Для устойчивости необходимо и достаточно, чтобы точки $(\Re b_{1}\tau,\, \Im b_{1}\tau,\, a_{1}\tau)$ и $(\Re b_{2}\tau,\, \Im b_{2}\tau,\, a_{2}\tau)$ находились внутри конуса устойчивости. Обе системы точек с изменением $\tau$ образуют конические винтовые линии вида $(\tau\cos{\tau},\,\tau\sin{\tau},\,\tau)$, каждая из которых один раз пересекает конус устойчивости, а затем находится вне его. Точки обеих кривых (кривые вследствие сопряжённости собственных чисел симметричны относительно плоскости $(\Re b, a)$) находятся внутри конуса при $\tau~\in~(0, 1.3)$.
+
+Поэтому уравнение \eqref{10.1} с матрицами \eqref{matr} устойчиво тогда и только тогда, когда $\tau~\in~(0, 1.3)$.
+
+\bigskip
+Прежде чем перейти к следующему примеру, сделаем замечание.
+Кривую \eqref{4} в пространстве параметров $(\Re b, \,\Im b,\, a)$ назовём ребром конуса устойчивости.
+\begin{remark}
+Ребро конуса устойчивости имеет в плоскости $(\Re b, a)$ асимптоту с коэффициентом наклона, равным 1.
+\end{remark}
+
+Действительно, найдём производную функции $a=S(b)$, заданной параметрически в \eqref{4}:
+$$
+\frac{d\,a(w)}{d \,b(w)}=-\frac{(\tg{w\tau}\cos^{2}{w\tau}-w\tau)\cos^{2}{w\tau}}{\sin{w\tau}-w\tau\cos{w\tau}}.
+$$
+
+Очевидно, $\lim_{w\rightarrow \pi/\tau}\dfrac{d\,a(w)}{d \,b(w)}=1$.
+
+\bigskip
+
+\textbf{Пример 3.} Пусть дано уравнение \eqref{10.1},
+где собственные числа матриц $A$ и $B$ имеют вид
+
+\begin{equation}
+\label{eig3} \lambda_{1, 2}=0,9688\pm5,6171i,\quad
+\mu_{1, 2}=1,3816\pm0,5841i.
+\end{equation}
+
+%$\rho_{1}=5.7, \rho_{2}=1.5, \alpha_{1}=1.4,\,\alpha_{2}=0.4$.
+
+Требуется определить, при каких значениях $\tau$ это уравнение устойчиво, а при каких неустойчиво.
+
+\bigskip
+Имеем
+
+\begin{equation}
+\label{a3}
+\begin{array}{l}
+ a_{1}=|\lambda_{1}|\cos{\arg{\lambda_{1}}}=\Re{\lambda_{1}}=0.9688, \\
+a_{2}=|\lambda_{2}|\cos{\arg{\lambda_{2}}}=\Re{\lambda_{2}}=0.9688.
+\end{array}
+\end{equation}
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3in,height=2.5in]{double_spiral6}
+    \end{center}
+  \caption{Конус устойчивости и точки  $(\Re b_{j}\tau,\, \Im b_{j}\tau,\, a_{j}\tau),j=1,2$}
+  \end{figure}
+
+\begin{equation}
+\label{b3}
+\begin{array}{c}
+b_{1} = |\mu_{1}|\,\exp(i(\arg \mu_{1}+|\lambda_{1}|\tau \sin{\arg \lambda_{1}}))=1.5\exp(i(0.4+5.6171\tau)),\\
+
+\smallskip
+b_{2} = |\mu_{2}|\,\exp(i(\arg \mu_{2}+|\lambda_{2}|\tau \sin{\arg \lambda_{2}}))=1.5\exp(-i(0.4+5.6171\tau)).
+\end{array}
+\end{equation}
+
+Построим точки $(\Re b_{1}\tau,\, \Im b_{1}\tau,\, a_{1}\tau)$ и $(\Re b_{2}\tau,\, \Im b_{2}\tau,\, a_{2}\tau)$ при $\tau~\in~[0, 2]$ и проследим их расположение относительно конуса устойчивости. Системы точек и конус устойчивости изображены на Рис.\,8.
+
+Точки обеих кривых (кривые вследствие сопряжённости собственных чисел симметричны относительно плоскости $(\Re b, a)$) находятся внутри конуса устойчивости при $\tau\in(0, 0.3)$ и при $\tau\in(0.9, 1.2)$, поэтому уравнение \eqref{10.1}  с собственными значениями \eqref{eig3} асимптотически устойчиво только при таких значениях запаздывания. При  других запаздываниях точки находятся вне конуса устойчивости, поэтому уравнение неустойчиво.
+
+Отметим, что после того, как точки кривых выходят из конуса устойчивости при $\tau=1.2$, они всегда находятся вне его. Это связано с тем, что на втором обороте точки винтовых линий обходят ребро конуса устойчивости (это самые удалённые от вертикальной оси точки) снаружи (Рис.\,9). Это говорит о том, что угловой коэффициент направляющих собственного конуса винтовых линий меньше единицы, т.\,е. меньше углового коэффициента асимптоты ребра конуса устойчивости (Замечание 2). Если бы угловой коэффициент направляющих собственного конуса винтовых линий был бы равен или больше единицы, то винтовые линии никогда бы не вышли из конуса устойчивости, что будет показано в следующем примере. (ещё не сделано)
+
+Таким образом, как только винтовые линии обходят наиболее удалённые точки конуса устойчивости (т.\,е. его ребро) снаружи, они и дальше будут обходить его снаружи, поэтому они больше не смогут снова войти в конус устойчивости. На Рис.\,9 изображены конус устойчивости и те же винтовые линии, что и на Рис.\,8. Ребро конуса устойчивости находится справа, также отмечены асимптота ребра конуса устойчивости и направляющая собственного конуса винтовых линий.
+
+Итак, в данном примере уравнение устойчиво при значениях запаздывания, лежащих в одном из двух конечных интервалов.
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=3in,height=2.5in]{double_spiral_edge}
+    \end{center}
+  \caption{Конус устойчивости и точки  $(\Re b_{j}\tau,\, \Im b_{j}\tau,\, a_{j}\tau),j=1,2$}
+  \end{figure}
+
+Отметим, что если при некотором значении $\tau$ винтовые линии обходят снаружи прямую $a=-\Re b$ в плоскости $(\Re b, a)$, т.е. прямую, противоположную ребру конуса устойчивости (так происходит в примере 3), то угловой коэффициент направляющих собственного конуса винтовых линий по модулю меньше единицы, а значит, со временем эти кривые обойдут снаружи и ребро конуса устойчивости. Затем, согласно рассуждениям из примера 3, винтовые линии будут всегда находиться вне конуса устойчивости.
+
+\bigskip
+
+%\textbf{Пример 4.} Пусть дано уравнение \eqref{10.1},
+%где собственные числа матриц $A$ и $B$ имеют вид
+
+%\begin{equation}
+%\label{eig4} \lambda_{1, 2}=0,9688\pm5,6171i,\quad
+%\mu_{1, 2}=1,3816\pm0,5841i.
+%\end{equation}
+
+%$\rho_{1}=5.7, \rho_{2}=1.5, \alpha_{1}=1.4,\,\alpha_{2}=0.4$.
+
+%Требуется определить, при каких значениях $\tau$ это уравнение устойчиво, а при каких неустойчиво.
+
+%\bigskip
+%Имеем
+
+%\begin{equation}
+%\label{a4}
+%\begin{array}{l}
+% a_{1}=|\lambda_{1}|\cos{\arg{\lambda_{1}}}=\Re{\lambda_{1}}=0.9688, \\
+%a_{2}=|\lambda_{2}|\cos{\arg{\lambda_{2}}}=\Re{\lambda_{2}}=0.9688.
+%\end{array}
+%\end{equation}
+
+
+\section{Примеры применения теоремы для матриц четвёртого порядка}
+
+\textbf{Пример 5.} С помощью геометрического метода теоремы \eqref{main_theorem} найдём значения $\tau$, обеспечивающие асимптотическую устойчивость \eqref{main} с матрицами
+\begin{equation}\label{matABex1}
+A =
+\begin{pmatrix}
+  1  &   1   &   -3  &  2\\
+  -3 &   1   &   -2  &  3\\
+  -1&   0.5   &   4  &  -2   \\
+  -3 &   2   &   -1  &   1   \\
+\end{pmatrix}, \;B=
+\begin{pmatrix}
+  -9  &   9.2   &   -38.6  &  26.4\\
+  -26.6 &   7   &   -8.4  &  8.6\\
+  -1.2  &   -4.9   &   41.6  &  -21.4   \\
+  -22.6 &   1.4   &   -0.2  &   7   \\
+\end{pmatrix}.
+\end{equation}
+
+Так как $B = 0.8I + 0.2A + 2A^{2}$, матрицы $A, B$ коммутируют и могут быть совместно приведены к треугольному виду $A_T$, $B_T$. Собственные числа $\lambda_{jj}, \mu_{jj}\; (1\leqslant j \leqslant 4)$ имеют вид
+\begin{equation}\label{eigenvex1}
+\begin{array}{lll}
+\lambda_{11}=3.5620, & \lambda_{22}= -1.2975, &  \lambda_{33, 44}=2.3677 \pm 1.5138i,\\
+\mu_{11}=26.8877,    &  \mu_{22}= 3.9073,     &  \mu_{33, 44}= 7.9025 \pm 14.6403i.
+\end{array}
+\end{equation}
+
+%При этом  МОЖНО ПОСЧИТАТЬ ПОТОМ В НОВЫХ ТЕРМИНАХ
+
+%\begin{equation}
+%\begin{array}{l}
+%a_{1}=|\lambda_{1}|\cos{\arg{\lambda_{1}}}=\Re{\lambda_{1}}=3.562, \\
+%a_{2}=|\lambda_{2}|\cos{\arg{\lambda_{2}}}=\Re{\lambda_{2}}=2.3677, \\
+%a_{3}=|\lambda_{3}|\cos{\arg{\lambda_{3}}}=\Re{\lambda_{3}}=2.3677, \\
+%a_{4}=|\lambda_{4}|\cos{\arg{\lambda_{4}}}=\Re{\lambda_{4}}=-1.2975.
+%\end{array}
+%\end{equation}
+
+%\begin{equation}
+%\begin{array}{c}
+%b_{1} = |\mu_{1}|\,\exp(i(\arg \mu_{1}+|\lambda_{1}|\tau \sin{\arg \lambda_{1}}))=26.8877,\\
+
+%\smallskip
+%b_{2} = |\mu_{2}|\,\exp(i(\arg \mu_{2}+|\lambda_{2}|\tau \sin{\arg \lambda_{2}}))=\\
+%=16.6369 \exp(i(1.0758 + 1.5138\tau)),\\
+
+%\smallskip
+%b_{3} = |\mu_{3}|\,\exp(i(\arg \mu_{3}+|\lambda_{3}|\tau \sin{\arg \lambda_{3}}))=\\
+%=16.6369 \exp(i(1.0758 - 1.5138\tau)),\\
+
+%b_{4} = |\mu_{4}|\,\exp(i(\arg \mu_{4}+|\lambda_{4}|\tau \sin{\arg \lambda_{4}}))=3.9073.
+%\smallskip
+
+%\end{array}
+%\end{equation}
+
+Изменяя $\tau$, построим кривые \eqref{pointsM}, \eqref{eigenvex1} $(1 \leqslant j \leqslant 4)$ и конус устойчивости (Fig.\,1).
+
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width=2.2in,height=2.2in]{ex_4_4}
+    \includegraphics[width=2.2in,height=2.2in]{ex_4_4_up}
+    \end{center}
+ {\footnotesize\hskip 40mm (a)\hskip 53mm (b)}
+    \caption{К примеру 5. Конус устойчивости и кривые \eqref{pointsM}, \eqref{eigenvex1} в двух проекциях.}
+  \end{figure}
+
+При $j=1,2$ две системы точек \eqref{pointsM}, \eqref{eigenvex1}, соответствующие действительным собственным значениям матрицы $A$, образуют прямые и  находятся внутри конуса устойчивости, когда $\tau\in (0,\tau_1), \; \tau\in (0,\tau_2)$ соответственно, где
+$\tau_{1}\simeq 0.0638$,
+$\tau_{2}\simeq 0.3341$.
+
+При $j=3,4$ две системы точек \eqref{pointsM}, \eqref{eigenvex1}, соответствующие комплексным собственным значениям матрицы $A$, с изменением $\tau$ образуют винтовые линии, пересекающие конус устойчивости при $\tau=\tau_{3,4}\simeq 0.0354.$
+
+Поскольку $\tau_{3,4}=\min_{1\leqslant  j \leqslant 4}\tau_{j}$, уравнение \eqref{main} с матрицами \eqref{matABex1} асимптотически устойчиво тогда и только тогда, когда $\tau \in (0,\tau_{3,4})$.
+
+
+\section{Теорема об устойчивости, не зависящей от величины запаздывания}
+
+Для выяснения delay-independent устойчивости уравнений \eqref{main} с совместно триангулируемыми матрицами $A,B\in \mathbb{R}^{m\times m}$ существенны $m+2$ конуса. Первый конус $K^1$ --- это, собственно, конус устойчивости \eqref{cone},\eqref{preimage}. Второй конус $K^2$ --- конус в $\mathbb{R}^{3}$ с уравнением $u_1^2+u_2^2=u_3^2$. $K^1$ объемлет $K^2$ и его точки неограниченно сближаются с точками $K^1$ при $u_3\to +\infty$. Ещё $m$ конусов строятся так. Матрицы $A,B$ приводятся к треугольному виду, вычисляются их диагональные элементы
+$\lambda_{jj}, \mu_{jj}$  $(1\leqslant l\leqslant m)$, и в случае $\Re \lambda{jj}\neq 0$ строятся конусы
+\begin{equation}\label{h}\nonumber
+K_j: \quad u_{1}^2 + u_{2}^2 = \frac{|\mu_{jj}|^2}{(\Re \lambda_{jj})^2 }u_{3}^2.
+\end{equation}
+На конусах $K_j$ лежат конические винтовые линии \eqref{pointsM}, указанные в теореме 1.
+
+
