@@ -1,5 +1,5 @@
 #TeXlipse project settings
-#Wed Mar 07 14:35:20 YEKT 2012
+#Wed Mar 07 14:40:24 YEKT 2012
 markTmpDer=true
 builderNum=0
 outputDir=
@@ -7,8 +7,8 @@ makeIndSty=
 bibrefDir=
 outputFormat=dvi
 tempDir=tmp
-mainTexFile=document.tex
-outputFile=document.dvi
+mainTexFile=thesis.tex
+outputFile=thesis.dvi
 langSpell=en
 markDer=true
 srcDir=
