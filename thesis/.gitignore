@@ -3,6 +3,8 @@
 /*.out
 /*.aux
 /*.toc
+/*.blg
+/*.bbl
 /img/*.pdf
 /img/app3/*.pdf
 /img/ring_bounds/*.pdf
