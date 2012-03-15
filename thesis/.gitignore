@@ -1,0 +1,6 @@
+/tmp
+/*.dvi
+/*.out
+/img/*.pdf
+/img/app3/*.pdf
+/img/ring_bounds/*.pdf

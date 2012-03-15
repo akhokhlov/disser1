@@ -1,0 +1,143 @@
+\chapter{Численное и качественное исследование устойчивости  сетей кольцевой и линейной конфигураций с ограниченным количеством нейронов}\label{chapter3}
+
+\section{Алгоритм и программа для построения границ областей устойчивости кольцевых нейронных сетей с ограниченным количеством нейронов}\label{sec:programnfiniteborder}
+
+В этом разделе мы опишем программу для построения границ области устойчивости кольцевых нейронных сетей с ограниченным количеством нейронов. Программа использует
+фрагменты предыдущих программ <<Анализ устойчивости>>   (раздел \ref{sec:program_complex})  и <<Устойчивость нейронных сетей>> (раздел \ref{sec:complexringnet}).
+
+
+
+Мы рассматриваем задачу устойчивости системы (см. формулу \eqref{main1})  
+\begin{equation}\label{main1chapter3}
+    \dot{x}_{j}(t) +  x_{j}(t) +  a\, x_{j-1}(t) + b\, x_{j+1}(t-\tau) = 0 \qquad 
+    (j\; {\rm{mod}}\; n).
+\end{equation}
+
+В матричном виде система имеет вид (см.  \eqref{generalequ}) 
+\begin{eqnarray}\label{mainmatrix1chapter3}
+    \dot{x}(t) + (E+aP)\, x(t) +  bP^{n-1}\, x(t-\tau) = 0, 
+\end{eqnarray}
+где  (см. \eqref{matrixP})
+\begin{equation}\label{matrixPchapter3}
+P=
+    \begin{pmatrix}
+        0      &    0     &   \ldots &  0       &  1        \\
+        1      &    0     &   \ldots &  0       &  0        \\
+        0      &    1     &   \ldots &  0       &  0        \\
+        \vdots &    \vdots&   \ddots &  \vdots  &  \vdots   \\
+        0      &   0      &   \ldots &  1       &  0        \\
+    \end{pmatrix}.
+\end{equation}
+
+
+
+
+
+
+\input{42}
+
+
+
+
+
+
+
+\section{Границы областей устойчивости кольцевых сетей с ограниченным количеством нейронов и односторонним запаздыванием}\label{sec:graphicsfiniteborderonesidedelay}
+
+
+
+
+
+
+В этом разделе мы укажем результаты поиска границ  устойчивости для кольцевой системы нейронов  с односторонним запаздыванием. Система описывается уравнениями \eqref{mainmatrix1chapter3}, \eqref{matrixPchapter3}. В отличие от предыдущей главы, 
+здесь мы будем рассматривать сети с ограниченным количеством нейронов. Разделим результаты на три группы: сети со средним запаздыванием, малым и большим запаздываниями. 
+
+Во всех трех группах количество нейронов не меньше трех, так как для двух нейронов описание кольцевой архитектуры противоречиво.  
+
+\subsection{Сети со средними значениями запаздываний}
+\begin{figure}[ht]
+      \centering
+        \subfloat{\includegraphics[width=10cm]{ring_bounds/asym_05_3}}
+        \caption{%
+        Область устойчивости для сети \eqref{mainmatrix1chapter3}, \eqref{matrixPchapter3} при $\tau=0.5$,  $n=3$.}
+        \label{fig:a3}
+    \end{figure}
+
+
+
+\begin{figure}[!ht]
+      \centering
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_05_4}}
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_05_5}}\\
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_05_6}}
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_05_7}}\\
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_05_8}}
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_05_9}}
+        \caption{%
+        Границы областей  устойчивости для системы  \eqref{mainmatrix1chapter3}, \eqref{matrixPchapter3}  для $\tau=0.5$ и  значений $n$ от 4 до 9 показана кружками.  Сплошная линия - граница области устойчивости, гарантированной для любого $n$.}
+        \label{fig:a4-9}
+    \end{figure}
+
+
+
+
+
+
+ \subsection{Сети с малыми  и большими значениями запаздываний}
+ \begin{figure}[ht] 
+      \centering
+       \subfloat{\includegraphics[width=12cm]{ring_bounds/asym_01_3}}
+             \caption{%
+        Границы областей  устойчивости для системы  \eqref{mainmatrix1chapter3}, \eqref{matrixPchapter3} для $\tau=0.1$.   Сплошная линия - граница области устойчивости, гарантированной для любого $n$.}
+        \label{fig:tau01n3}
+   \end{figure}
+ 
+ 
+ \begin{figure}[!ht] 
+      \centering
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_01_4}}
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_01_5}}\\ \vspace{-5mm}
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_01_6}}
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_01_7}}\\  \vspace{-5mm}
+
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_1_4}}
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_1_5}}\\  \vspace{-5mm}
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_1_6}}
+       \subfloat{\includegraphics[width=5cm]{ring_bounds/asym_1_7}}
+      \caption{%
+        Границы областей  устойчивости для системы  \eqref{mainmatrix1chapter3}, \eqref{matrixPchapter3} для $\tau=0.1$ (верхние четыре рисунка) и для $\tau=1.0$ (нижние 4 рисунка).   Сплошная линия - граница области устойчивости, гарантированной для любого $n$.}
+        \label{fig:tau0210n47}
+   \end{figure}
+ 
+%\begin{comment} 
+ 
+ \section{Границы областей устойчивости кольцевых сетей с ограниченным количеством нейронов и двусторонним запаздыванием}\label{sec:graphicsfinitebordertwosidedelay}
+
+
+Мы рассматриваем задачу устойчивости системы (см. формулу \eqref{main2})  
+\begin{equation}\label{main2chapter3}
+    \dot{x}_{j}(t) +  x_{j}(t) +  a\, x_{j-1}(t-\tau) + b\, x_{j+1}(t-\tau) = 0 \qquad 
+    (j\; {\rm{mod}}\; n).
+\end{equation}
+
+
+\begin{figure}[!ht] 
+      \centering
+       
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_01_4}}
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_01_5}}\\  \vspace{-5mm}
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_01_6}}
+        \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_01_7}}
+
+      \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_1_4}}
+      \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_1_5}}\\ \vspace{-5mm}
+      \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_1_6}}
+      \subfloat{\includegraphics[width=5cm]{ring_bounds/sym_1_4}}\\  \vspace{-5mm}
+       
+      \caption{%
+        Границы областей  устойчивости для системы  \eqref{mainmatrix2chapter3}, \eqref{matrixPchapter3} с двусторонним запаздыванием для $\tau=0.1$ (верхние четыре рисунка) и для $\tau=1.0$ (нижние 4 рисунка).   Сплошная линия - граница области устойчивости, гарантированной для любого $n$.}
+        \label{fig:tau0110n47}
+   \end{figure}
+   
+ %\end{comment} 
+ 
