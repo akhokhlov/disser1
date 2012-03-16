@@ -16,9 +16,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>.tex</name>
+			<type>1</type>
+			<location>/usr/share/texmf-texlive/tex/latex/tools/.tex</location>
+		</link>
+		<link>
 			<name>thesis.bib</name>
 			<type>1</type>
-			<location>C:/Users/akhokhlov/workspace/disser_github/thesis/thesis.bib</location>
+			<location>/home/user/eclipse/C::/Users/akhokhlov/workspace/disser_github/thesis/thesis.bib</location>
 		</link>
 	</linkedResources>
 </projectDescription>
