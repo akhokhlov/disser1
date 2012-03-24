@@ -40,8 +40,9 @@ debug = 0;
 	label_number = 'Число нейронов от ';
     label_number1 = 'до ';
     label_path = 'Путь для сохранения: ';
-    label_ext = 'Расшириние: ';
+    label_ext = 'Расширение: ';
     label_epsilon = 'Точность: ';
+    label_theSameScale = 'Одинаковый масштаб';
 
     
 	label_calc = 'Рассчитать...';
@@ -140,12 +141,17 @@ input_dir = uicontrol(leftPanel1, 'style', 'edit', ...
     'units', 'normalized', 'position', [0.85 .28 .15 .15]);
 
 
+% use the same scale for all plots
+checkboxScale = uicontrol(leftPanel1, 'style', 'checkbox', ...
+    'string', label_theSameScale, ...
+    'units', 'normalized', 'position', [0 .1 .25 .15]);
+
 % extension
 uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_ext, ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0, 0.1, .3, .15]);
-extCombo = uicontrol(leftPanel1, 'style', 'popupmenu', 'string', {'png', 'eps'}, ...
+    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0.25, 0.08, .2, .15]);
+extCombo = uicontrol(leftPanel1, 'style', 'popupmenu', 'string', {'eps', 'png'}, ...
 		'tooltipString', label_calc_tip,...
-		'units', 'normalized', 'position', [0.3 .1 .15 .15]); 
+		'units', 'normalized', 'position', [0.45 .1 .15 .15]); 
 
 % epsilon
 uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_epsilon, ...
@@ -153,6 +159,7 @@ uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_ep
 input_epsilon = uicontrol(leftPanel1, 'style', 'edit', ...
     'string', '0.05', 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.85 .12 .15 .15]);
+
 
 
 
@@ -266,8 +273,16 @@ uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
         end
         
         mkdir(dir);
-        for number=minNumber:maxNumber
-            plotter_boundness(type, tau, number, epsilon, dir, ext);
+        [minX, maxX] = plotter_boundness(type, tau, minNumber, epsilon, dir, ext);
+
+        if get(checkboxScale, 'value')
+            for number=minNumber+1:maxNumber
+                plotter_boundness(type, tau, number, epsilon, dir, ext, minX, maxX);
+            end
+        else
+            for number=minNumber+1:maxNumber
+                plotter_boundness(type, tau, number, epsilon, dir, ext);
+            end
         end
 
     end

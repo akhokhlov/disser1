@@ -1,1 +1,44 @@
+\chapter{Численное и качественное исследование устойчивости  сетей кольцевой и линейной конфигураций с ограниченным количеством нейронов}\label{chapter3}
+
+\section{Алгоритм и программа для построения границ областей устойчивости кольцевых нейронных сетей с ограниченным количеством нейронов}\label{sec:programnfiniteborder}
+
+В этом разделе мы опишем программу для построения границ области устойчивости кольцевых нейронных сетей с ограниченным количеством нейронов. Программа использует
+фрагменты предыдущих программ <<Анализ устойчивости>>   (раздел \ref{sec:program_complex})  и <<Устойчивость нейронных сетей>> (раздел \ref{sec:complexringnet}).
+
+
+
+Мы рассматриваем задачу устойчивости систем (см. формулы \eqref{main1}, \eqref{main2} соответственно)  
+\begin{equation}\label{main1chapter4}
+    \dot{x}_{j}(t) +  x_{j}(t) +  a\, x_{j-1}(t) + b\, x_{j+1}(t-\tau) = 0 \qquad 
+    (j\; {\rm{mod}}\; n),
+\end{equation}
+\begin{equation}\label{main2chapter4}
+    \dot{x}_{j}(t) +  x_{j}(t) +  a\, x_{j-1}(t-\tau)) + b\, x_{j+1}(t-\tau) = 0 \qquad 
+    (j\; {\rm{mod}}\; n).
+\end{equation}
+
+В дальнейшем кольцевые сети, описываемые уравнением \eqref{main1chapter4}, будем называть сетями с односторонним запаздыванием, а сети, описываемые уравнением \eqref{main2chapter4}, -- сетями с двусторонним запаздыванием.
+
+\begin{comment}
+В матричном виде система имеет вид (см.  \eqref{generalequ}) 
+\begin{eqnarray}\label{mainmatrix1chapter3}
+    \dot{x}(t) + (E+aP)\, x(t) +  bP^{n-1}\, x(t-\tau) = 0, 
+\end{eqnarray}
+где  (см. \eqref{matrixP})
+\begin{equation}\label{matrixPchapter3}
+P=
+    \begin{pmatrix}
+        0      &    0     &   \ldots &  0       &  1        \\
+        1      &    0     &   \ldots &  0       &  0        \\
+        0      &    1     &   \ldots &  0       &  0        \\
+        \vdots &    \vdots&   \ddots &  \vdots  &  \vdots   \\
+        0      &   0      &   \ldots &  1       &  0        \\
+    \end{pmatrix}.
+\end{equation}
+\end{comment}
+
+
+
 \input{41}
+\input{42}
+

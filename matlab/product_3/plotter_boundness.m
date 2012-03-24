@@ -1,4 +1,4 @@
-function plotter_boundness(type, tau, number, epsilon, dir, ext)
+function [minX, maxX] = plotter_boundness(type, tau, number, epsilon, dir, ext, minX, maxX)
     addpath ../common
     %close all;
 
@@ -94,15 +94,22 @@ annotation(figure1,'textbox',...
     ax=axis;
     x1=min(ax(1), ax(3));
     x2=max(ax(2), ax(4));
-    x1=-1.5;
-    x2=1.5;
-    axis([x1 x2 x1 x2]);
+    if exist('minX', 'var')
+        x1=minX;
+    end
+    if exist('maxX', 'var')
+        x2=maxX;
+    end
+    minX = x1;
+    maxX = x2;
+    axis([x1-.5 x2+.5 x1-.5 x2+.5]);
 
     % Boundness
     ax=axis;
     plot(ax(1:2), [ax(4) ax(4)], 'k', 'LineWidth', 1);
     plot([ax(2) ax(2)], ax(3:4), 'k', 'LineWidth', 1);
-    axis([x1 x2 x1 x2+.01]);
+    %axis([x1 x2 x1 x2+.01]);
+    axis([x1-.5 x2+.5 x1-.5 x2+.51]);
 
     if type == 1
         typeName = 'asym';
@@ -110,11 +117,16 @@ annotation(figure1,'textbox',...
         typeName = 'sym';
     end
     
+    strTau = num2str(tau);
+    if length(strTau) < 3
+        strTau = [strTau '_0'];
+    end
+    
     %mkdir(dir);
-    figureName = [typeName '_' num2str(tau) '_' num2str(number)];
+    figureName = [typeName '-' strTau '-' num2str(number)];
     
     % replace decimal point 
-    figureName = strrep(figureName, '.', '');
+    figureName = strrep(figureName, '.', '_');
     
     set(figure1, 'PaperPositionMode', 'auto')   % Use screen size
     
