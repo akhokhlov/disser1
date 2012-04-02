@@ -14,4 +14,16 @@
 	<natures>
 		<nature>net.sourceforge.texlipse.builder.TexlipseNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>.tex</name>
+			<type>1</type>
+			<location>/usr/share/texmf-texlive/tex/latex/tools/.tex</location>
+		</link>
+		<link>
+			<name>thesis.bib</name>
+			<type>1</type>
+			<location>C:/Users/akhokhlov/workspace/disser/thesis/thesis.bib</location>
+		</link>
+	</linkedResources>
 </projectDescription>
