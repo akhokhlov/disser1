@@ -3,20 +3,20 @@
 % второе значение было меньше tau.
 % 2. Методом половинного деление отрезка [r(1), r(2)] добиваемся заданной
 % точности по tau.
-function [half, res] = searchPointInRowGeom(type, number, tau, phi, epsilon)
+function [half, res] = searchPointInRowGeom(type, number, tau, phi, epsilon, c)
 r = [0 2];
 % step 1.
-res = straightStabAnalizer(type, r(2)*cos(phi), r(2)*sin(phi), number, tau);
+res = straightStabAnalizer(type, r(2)*cos(phi), r(2)*sin(phi), number, tau, c);
 while res
     r(2) = r(2) + 1;
-    res = straightStabAnalizer(type, r(2)*cos(phi), r(2)*sin(phi), number, tau);
+    res = straightStabAnalizer(type, r(2)*cos(phi), r(2)*sin(phi), number, tau, c);
 end
 % step 2.
 for iter = 1:20
     %disp(' ');
     %disp(['Step ' num2str(iter) ' ========================>'])
     half = sum(r)/2;
-    res = straightStabAnalizer(type, half*cos(phi), half*sin(phi), number, tau);
+    res = straightStabAnalizer(type, half*cos(phi), half*sin(phi), number, tau, c);
     
 %     if length(res) >= 2 && abs(res(2) - tau) < epsilon
 %         break;

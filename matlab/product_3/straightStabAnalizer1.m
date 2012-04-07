@@ -1,18 +1,16 @@
-function [stab] = straightStabAnalizer(type, a, b, number, tau, c)
+function [stab] = straightStabAnalizer1(type, a, b, c, number, tau)
 
 j = 1:number;
 
+
 if type == 1
     % первый тип соединения нейронов. 
-    lambda = c + a*exp(1i*2*pi.*j/number);
+    lambda = 1 + a*exp(1i*2*pi.*j/number);
     mu = b*exp(-1i*2*pi.*j/number);
 else
     % второй тип соединения нейронов. 
     lambda = ones (size (j));
-    %mu = a*exp(1i*2*pi.*j/number) + b*exp(-1i*2*pi.*j/number);
-    %c=.00001;
-    B = diag(b*ones(number-1,1),1) + diag(a*ones(number-1,1),-1) + diag(a*c, number-1) + diag(b*c,-(number-1));
-    mu = eig(B);
+    mu = a*exp(1i*2*pi.*j/number) + b*exp(-1i*2*pi.*j/number);
 end
 
 % вычисление границы w.
