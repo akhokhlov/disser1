@@ -1,54 +1,32 @@
 function application3
-debug = 0;
 
+fontsize0 = 12;
+fontsize1 = 15;
+image1 = imread('circles_right.png');                                                                           
+image2 = imread('circles.png');                                                                           
 
-	fontsize0 = 12;
-	fontsize1 = 15;
-
-    figure_width = 600;
-    figure_height = 500;
-    screen_size = get(0,'ScreenSize');
-    screen_width = screen_size(1,3);
-    screen_height = screen_size(1,4);
-    figure_x = 0; 
-    figure_y = 0; 
-    graph_count = 0;
-    resetFigureVars();
-    image1 = imread('circles_right.png');                                                                           
-    image2 = imread('circles.png');                                                                           
-
-
-	
-	% Error strings
-	label_error = 'Ошибка';
-	err_incorrect_tau = 'Вы ввели некорректное значение tau.';
-	%err_incorrect_number = 'Вы ввели некорректное максимальное число нейронов. Оно должно быть больше 2.';
-	%err_incorrect_number = 'You entered incorrect max number of neirons. It should be greater then 2.';
-	err_incorrect_epsilon = 'You entered incorrect epsilon.';
-	
-	label_graph = 'График';
-	appTitle = 'Построение областей устойчивости круговых нейронных сетей';
-	header = 'Построение областей устойчивости';
-	header_eq = 'для круговых нейронных сетей';
-	inputPanelTitle = 'Входные данные';
-	label_method = 'Конфигурация нейронной сети';
-	label_method1 = 'Круговое соединение нейронов с малым запаздыванием взаимодействия с правыми соседями';
-	label_method2 = 'Круговое соединение нейронов с одинаковым запаздываниям взаимодействия с соседями';
-	label_model1 = 'Модель сети: x''j(t) + xj(t) + a*xj-1(t) + b*xj+1(t-tau) = 0, 1 <= j <= n';
-    label_model2 = 'Модель сети: x''j(t) + xj(t) + a*xj-1(t-tau) + b*xj+1(t-tau) = 0, 1 <= j <= n';
-    label_set_tau = 'Величина запаздывания tau = ';
-	label_number = 'Число нейронов от ';
-    label_number1 = 'до ';
-    label_path = 'Путь для сохранения: ';
-    label_ext = 'Расширение: ';
-    label_epsilon = 'Точность: ';
-    label_theSameScale = 'Одинаковый масштаб';
-
-    
-	label_calc = 'Рассчитать...';
-    label_calc_tip = 'Определяет интервалы устойчивости системы, заданной матрицами A и B';
-    label_close = 'Закрыть все графики';
-    tooltip_close = 'Закрывает все ранее открытые графики';
+% Error strings
+label_error = 'Ошибка';
+err_incorrect_tau = 'Вы ввели некорректное значение tau.';
+err_incorrect_epsilon = 'You entered incorrect epsilon.';
+appTitle = 'Построение областей устойчивости круговых нейронных сетей';
+header = 'Построение областей устойчивости';
+header_eq = 'для круговых нейронных сетей';
+inputPanelTitle = 'Входные данные';
+label_method = 'Конфигурация нейронной сети';
+label_method1 = 'Круговое соединение нейронов с малым запаздыванием взаимодействия с правыми соседями';
+label_method2 = 'Круговое соединение нейронов с одинаковым запаздываниям взаимодействия с соседями';
+label_model1 = 'Модель сети: x''j(t) + xj(t) + a*xj-1(t) + b*xj+1(t-tau) = 0, 1 <= j <= n';
+label_model2 = 'Модель сети: x''j(t) + xj(t) + a*xj-1(t-tau) + b*xj+1(t-tau) = 0, 1 <= j <= n';
+label_set_tau = 'Величина запаздывания tau = ';
+label_number = 'Число нейронов от ';
+label_number1 = 'до ';
+label_path = 'Путь для сохранения: ';
+label_ext = 'Расширение: ';
+label_epsilon = 'Точность: ';
+label_theSameScale = 'Одинаковый масштаб';
+label_calc = 'Рассчитать...';
+label_calc_tip = 'Определяет интервалы устойчивости системы, заданной матрицами A и B';
 
 	% Create a figure that will have a uitable, axes and checkboxes
 f = figure('Position', [50, 100, 920, 600],...
@@ -93,49 +71,47 @@ rb2 = uicontrol('parent',group, 'Style','Radio',...
 % first method
 inputPanel1 = uipanel('Parent',inputPanel, 'bordertype', 'none',...
                     'Position',[0 0 1 .65]);
-                                                                           if debug == true
-                                                                               set (inputPanel1, 'bordertype', 'etchedout') ;
-                                                                           end
-method_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize1, 'string', label_method1, ...
-		'units', 'normalized', 'position', [0, 0.85, 1, .2]);
-model_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_model1, ...
-		'units', 'normalized', 'position', [0, 0.7, 1, .1]);
+
+method_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize1, ...
+'string', label_method1, 'units', 'normalized', 'position', [0, 0.85, 1, .2]);
+model_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize0,...
+'string', label_model1, 'units', 'normalized', 'position', [0, 0.7, 1, .1]);
     
 leftPanel1 = uipanel('Parent',inputPanel1, 'bordertype', 'none',...
                     'Position',[0 0 .75 .7]);
-                                                                           if debug == true
-                                                                               set (leftPanel1, 'bordertype', 'etchedout') ;
-                                                                           end
-
-                                                                           
                                                                            
 % tau
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_set_tau, ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0, 0.75, .6, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', label_set_tau, 'horizontalAlignment', 'right', ...
+    'units', 'normalized', 'position', [0, 0.75, .6, .15]);
 input_tau = uicontrol(leftPanel1, 'style', 'edit', ...
     'string', '0.5', 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.6 .77 .15 .15]);
 
 
 % min max number 
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_number, ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0, 0.5, .6, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', label_number, 'horizontalAlignment', 'right', ...
+    'units', 'normalized', 'position', [0, 0.5, .6, .15]);
 input_minnumber = uicontrol(leftPanel1, 'style', 'edit', ...
     'string', '3', 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.6 .52 .15 .15]);
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_number1, ...
-    'horizontalAlignment', 'center', 'units', 'normalized', 'position', [0.75, 0.5, .1, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ....
+    'string', label_number1, 'horizontalAlignment', 'center', ...
+    'units', 'normalized', 'position', [0.75, 0.5, .1, .15]);
 
 input_number = uicontrol(leftPanel1, 'style', 'edit', ...
-    'string', '10', 'backgroundcolor', 'w',...
+    'string', '3', 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.85 .52 .15 .15]);
 
      
 % path
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_path, ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0, 0.25, .3, .15]);
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', [pwd '/'], ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0.3, 0.25, .55, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', label_path, 'horizontalAlignment', 'right', ...
+    'units', 'normalized', 'position', [0, 0.25, .3, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', [pwd '/'], 'horizontalAlignment', 'right', ...
+    'units', 'normalized', 'position', [0.3, 0.25, .55, .15]);
 input_dir = uicontrol(leftPanel1, 'style', 'edit', ...
     'string', 'graphs', 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.85 .28 .15 .15]);
@@ -147,29 +123,24 @@ checkboxScale = uicontrol(leftPanel1, 'style', 'checkbox', ...
     'units', 'normalized', 'position', [0 .1 .25 .15]);
 
 % extension
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_ext, ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0.25, 0.08, .2, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', label_ext, 'horizontalAlignment', 'right', ...
+    'units', 'normalized', 'position', [0.25, 0.08, .2, .15]);
 extCombo = uicontrol(leftPanel1, 'style', 'popupmenu', 'string', {'eps', 'png'}, ...
 		'tooltipString', label_calc_tip,...
 		'units', 'normalized', 'position', [0.45 .1 .15 .15]); 
 
 % epsilon
-uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_epsilon, ...
-    'horizontalAlignment', 'right', 'units', 'normalized', 'position', [0.65, 0.1, .2, .15]);
+uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', label_epsilon, 'horizontalAlignment', 'right', ...
+    'units', 'normalized', 'position', [0.65, 0.1, .2, .15]);
 input_epsilon = uicontrol(leftPanel1, 'style', 'edit', ...
     'string', '0.05', 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.85 .12 .15 .15]);
 
-
-
-
-
 rightPanel1 = uipanel('Parent',inputPanel1, 'bordertype', 'none',...
                     'Position',[.75 0 .25 .7]);
-                
-                                                                           if debug == true
-                                                                               set (rightPanel1, 'bordertype', 'etchedout') ;
-                                                                           end
+
 ax = axes('parent', rightPanel1, 'position', [0 0 1 1]);
 image( image1, 'parent', ax);
                                             
@@ -177,13 +148,8 @@ image( image1, 'parent', ax);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 % Bottom panel.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-	bottomPanel = uipanel('Parent',rootPanel,'bordertype', 'none',...
+bottomPanel = uipanel('Parent',rootPanel,'bordertype', 'none',...
 		 'Position',[0 0 1 .1]);
-                                                                           if debug == true
-                                                                               set (bottomPanel, 'bordertype', 'etchedout') ;
-                                                                           end
-                                                                           
-                                                                           
 
 uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
 		'tooltipString', label_calc_tip,...
@@ -203,11 +169,9 @@ uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
             val = get(extCombo, 'value');
             values = get(extCombo, 'string');
             ext = values(val);
-
     end
                                                                            
-                                                                           
-    function sel_callback(source,arg2)
+    function sel_callback(source, ~)
         if  get(source,'SelectedObject') == rb1
             % show method 1
             set (method_text, 'string', label_method1);
@@ -221,8 +185,7 @@ uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
         end
     end
 
-
-	function calc_callback(arg1, arg2)
+	function calc_callback(~, ~)
         [tau, minNumber, maxNumber, epsilon, dir, ext] = getValues();
         if isnan(tau) 
             str = err_incorrect_tau;
@@ -230,12 +193,14 @@ uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
             return;
         end
         if isnan(minNumber) || maxNumber < 3
-            str = 'You entered incorrect min number of neirons. It should be greater then 2.';
+            str = ['You entered incorrect min number of neirons. ' ...
+                'It should be greater then 2.'];
             errordlg(str, label_error, 'on');
             return;
         end
         if isnan(maxNumber) || maxNumber < 3 || maxNumber < minNumber 
-            str = 'You entered incorrect max number of neirons. It should be greater then 2 and not less then min number.';
+            str = ['You entered incorrect max number of neirons. ' ...
+            'It should be greater then 2 and not less then min number.'];
             errordlg(str, label_error, 'on');
             return;
         end
@@ -246,20 +211,21 @@ uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
         end
         
         if abs(epsilon) < 0.05
-            warn_eps = questdlg(['Calculating boundness with little epsion may spend a lot of time on slow machines. ' ...
-                'You should try greater value before. Are you sure you want to procesed?'], ...
-                         'Perfomance warning', ...
-                         'Yes', 'No', 'No');
+            warn_eps = questdlg(['Calculating boundness with little epsion ', ...
+                'may spend a lot of time on slow machines. ' ...
+                'You should try greater value before. ',...
+                'Are you sure you want to procesed?'], ...
+                'Perfomance warning', 'Yes', 'No', 'No');
             switch warn_eps,
                 case 'No', return;
             end % switch
         end
         
         if abs(minNumber - maxNumber) > 7
-            warn_eps = questdlg(['Calculating boundness for many numbers of neironous may spend a lot of time on slow machines. ' ...
-                'You should try greater value before. Are you sure you want to procesed?'], ...
-                         'Perfomance warning', ...
-                         'Yes', 'No', 'No');
+            warn_eps = questdlg(['Calculating boundness for many numbers ', ...
+            'of neironous may spend a lot of time on slow machines. ' ...
+            'You should try greater value before. Are you sure you want to procesed?'], ...
+            'Perfomance warning', 'Yes', 'No', 'No');
             switch warn_eps,
                 case 'No', return;
             end % switch
@@ -273,25 +239,17 @@ uicontrol(bottomPanel, 'style', 'pushbutton', 'string', label_calc, ...
         end
         
         mkdir(dir);
-        [minX, maxX] = plotter_boundness(type, tau, minNumber, epsilon, dir, ext);
+        [minX, maxX] = plotterBoundness(type, tau, minNumber, epsilon, dir, ext);
 
         if get(checkboxScale, 'value')
             for number=minNumber+1:maxNumber
-                plotter_boundness(type, tau, number, epsilon, dir, ext, minX, maxX);
+                plotterBoundness(type, tau, number, epsilon, dir, ext, minX, maxX);
             end
         else
             for number=minNumber+1:maxNumber
-                plotter_boundness(type, tau, number, epsilon, dir, ext);
+                plotterBoundness(type, tau, number, epsilon, dir, ext);
             end
         end
 
     end
-    
-    function resetFigureVars()
-        figure_x = screen_width - figure_width;
-        figure_y = screen_height - figure_height - 25;
-        graph_count = 0;
-    end
-	
-	
 end
