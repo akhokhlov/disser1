@@ -8,7 +8,7 @@ public class MatlabSourceConverter
 	private final static String MATLAB_DIR = ".." + File.separator + "matlab";
 	private final static String THESIS_DIR = ".." + File.separator + "thesis";
 	private final static String MATLAB_DIR_IN_THESIS = THESIS_DIR
-			+ File.separator + "matlab";
+			+ File.separator + "srcmat";
 
 	public static void main(String[] args) throws IOException
 	{
@@ -59,7 +59,11 @@ public class MatlabSourceConverter
 			writer.println("\\begin{verbatim}");
 			while (scan.hasNextLine())
 			{
-				writer.println(scan.nextLine());
+				String line = scan.nextLine();
+				if (line.trim().length() > 1)
+				{
+					writer.println(line);
+				}
 			}
 			writer.println("\\end{verbatim}");
 		} catch (IOException e)

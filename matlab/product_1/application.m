@@ -1,17 +1,11 @@
 function application
-debug = false;
-%format short;
-
-
 	MAX_DIM = 5;
 	fontsize0 = 12;
 	fontsize1 = 15;
-	
-	% Error strings
+    
+    % Строковые ресурсы.
 	label_error = 'Ошибка';
 	err_incorrect_cell = 'Вы ввели некорректное значение в ячейке ';
-	
-	
 	label_graph = 'График';
 	appTitle = 'Анализ устойчивости';
 	header = 'Анализ устойчивости уравнения ';
@@ -62,18 +56,8 @@ f = figure('Position', [50, 100, 900, 700],...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 inputPanel = uipanel('Parent',f,'Title',inputPanelTitle,...
 		 'Position',[0 .3 1 .6]);
-inputPanel1 = uipanel('Parent',f,'Title',inputPanelTitle,...
-		 'Position',[1 .3 1 .6]);
-uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize1, 'string', 'Бла бла бла .......', ...
-		'units', 'normalized', 'position', [0, 0.5, 1, .5]);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 sliderPanel = uipanel('Parent',inputPanel, ...
     'bordertype', 'none', 'Position',[0 .9 1 .1]);
-                                                                           if debug == true
-                                                                               set (sliderPanel, 'bordertype', 'etchedout') ;
-                                                                           end
-
 uicontrol(sliderPanel, 'style', 'text', 'fontsize', fontsize1, 'string', label_dim, ...
 		'horizontalalignment', 'right',...
 		'units', 'normalized', 'position', [0, 0, .2, 1]);
@@ -81,7 +65,6 @@ dimText = uicontrol(sliderPanel, 'style', 'text', ...
 		'units', 'normalized', ...
 		'fontsize', fontsize1, ...
 		'position', [0.2, 0, .1, 1]);
-	% scale
 scale = uipanel('parent', sliderPanel, 'bordertype', 'none', 'Position',[0.3, 0, .7, 1]);
 	for n=1:5
 		uicontrol(scale, 'style', 'text', ...
@@ -96,6 +79,7 @@ dimSlider =	uicontrol(sliderPanel, 'style', 'slider', ...
 		'callback', @dimSlider_callback);
 		set(dimText, 'string', get(dimSlider, 'value')+1);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % input method
 group = uibuttongroup('parent', inputPanel, 'Position',[0 .65 1 .25]);
 uicontrol(group, 'style', 'text', 'fontsize', fontsize1, 'string', label_method, ...
@@ -107,75 +91,54 @@ uicontrol('parent',group, 'Style','Radio',...
 uicontrol('parent',group, 'Style','Radio',...
     'fontsize', fontsize0, 'String',label_method2,...
     'units', 'normalized', 'pos',[0, 0, 1,.3]);
-
-        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % matrix input
 matrixPanel = uipanel('Parent',inputPanel, 'bordertype', 'none',...
                     'Position',[0 .25 1 .4]);
-                                                                           if debug == true
-                                                                               set (matrixPanel, 'bordertype', 'etchedout') ;
-                                                                           end
-                
 dim = str2double(get(dimText, 'string'));
-	uicontrol(matrixPanel, 'style', 'text', 'fontsize', fontsize1, 'string', inputPanelDesc, ...
-		'horizontalalignment', 'right',...
+	uicontrol(matrixPanel, 'style', 'text', 'fontsize', fontsize1, ...
+        'string', inputPanelDesc, 'horizontalalignment', 'right',...
 		'units', 'normalized', 'position', [0, 0.6, .2, .4]);
-	uicontrol(matrixPanel, 'style', 'text', 'fontsize', fontsize1, 'string', label_D, ...
-		'horizontalalignment', 'right',...
+	uicontrol(matrixPanel, 'style', 'text', 'fontsize', fontsize1, ...
+        'string', label_D, 'horizontalalignment', 'right',...
 		'units', 'normalized', 'position', [0.2, 0.6, .1, .4]);
-clearAButton =	uicontrol(matrixPanel, 'style', 'pushbutton', ...
+    uicontrol(matrixPanel, 'style', 'pushbutton', ...
     'string', label_clear, 'tooltipString', tip_clear,...
 		'units', 'normalized', 'position', [0.2, 0.4, .1, .2], ...
 		'visible', 'off', 'callback', @clear_callback); 
-randAButton = 	uicontrol(matrixPanel, 'style', 'pushbutton', ...
+    uicontrol(matrixPanel, 'style', 'pushbutton', ...
     'string', label_rand, 'tooltipString', tip_rand,...
 		'units', 'normalized', 'position', [0.2, 0.2, .1, .2], ...
 		'visible', 'off', 'callback', @random_callback); 
-                                                                           if debug == true
-                                                                               set (clearAButton, 'visible', 'on') ;
-                                                                               set (randAButton, 'visible', 'on') ;
-                                                                           end
-
-	dim = MAX_DIM;
+    dim = MAX_DIM;
 	matrixD = createTable(dim, dim);
 		set(matrixD.root, 'Parent', matrixPanel);
 		set(matrixD.root, 'Position',[.3 0 .7 1]);
-
-        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Vector Panel
 
+% Vector Panel
 vectorPanel = uipanel('Parent',inputPanel, 'bordertype', 'none',...
                     'Position',[0 0 1 .25]);
-                                                                           if debug == true
-                                                                               set (vectorPanel, 'bordertype', 'etchedout') ;
-                                                                           end
-uicontrol(vectorPanel, 'style', 'text', 'fontsize', fontsize1, 'string', label_vector, ...
-    'units', 'normalized', 'position', [0, 0.7, 1, .3]);
-
-uicontrol(vectorPanel, 'style', 'text', 'fontsize', fontsize1, 'string', label_A, ...
-    'horizontalalignment', 'right',...
+uicontrol(vectorPanel, 'style', 'text', 'fontsize', fontsize1, ...
+    'string', label_vector, 'units', 'normalized', 'position', [0, 0.7, 1, .3]);
+uicontrol(vectorPanel, 'style', 'text', 'fontsize', fontsize1, ...
+    'string', label_A, 'horizontalalignment', 'right',...
     'units', 'normalized', 'position', [0.1 .3 .1 .3]);
 vectorA = createVector(dim);
     set(vectorA.root, 'Parent', vectorPanel);
     set(vectorA.root, 'Position',[0.2 .3 .8 .3]);
-
-uicontrol(vectorPanel, 'style', 'text', 'fontsize', fontsize1, 'string', label_B, ...
-    'horizontalalignment', 'right',...
+uicontrol(vectorPanel, 'style', 'text', 'fontsize', fontsize1, ...
+    'string', label_B, 'horizontalalignment', 'right',...
     'units', 'normalized', 'position', [0.1 0 .1 .3]);
 vectorB = createVector(dim);
     set(vectorB.root, 'Parent', vectorPanel);
     set(vectorB.root, 'Position',[0.2 0 .8 .3]);
-
-    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Eig Panel
 eigPanel = uipanel('Parent',inputPanel, 'bordertype', 'none',...
                     'Position',[1 0 1 .65]);
-                                                                           if debug == true
-                                                                               set (eigPanel, 'bordertype', 'etchedout') ;
-                                                                           end
 eigInput1 = createEigInput('A', 'lambda') ;
 set (eigInput1.root, 'parent', eigPanel) ;
 set (eigInput1.root, 'position', [0, 0, .5, 1]) ;
@@ -183,54 +146,36 @@ set (eigInput1.root, 'position', [0, 0, .5, 1]) ;
 eigInput2 = createEigInput('B', 'mu') ;
 set (eigInput2.root, 'parent', eigPanel) ;
 set (eigInput2.root, 'position', [0.5, 0, .5, 1]) ;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
-                                                                           
-                                                                           
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 % Result panel.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-resultPanel = uipanel('Parent',f,'Title',resultPanelTitle,...
+    resultPanel = uipanel('Parent',f,'Title',resultPanelTitle,...
 		 'Position',[0 0 1 .3]);
-	
-% 	result_list = uicontrol(resultPanel, 'style', 'listbox', ...
-% 		'string', ['ddd'; 'ads'], ...
-% 		'fontsize', fontsize1, ...
-% 		'units', 'normalized', 'position', [0, .3, 1, .7]);
-	
 	resultChildPanel = uipanel('Parent',resultPanel,'bordertype', 'none',...
 		 'Position',[0 0.2 .7 .8]);
-                                                                           if debug == true
-                                                                               set (resultChildPanel, 'bordertype', 'etchedout') ;
-                                                                           end
+
     resultLabels = zeros (1, MAX_DIM) ;
     for n=1:MAX_DIM
         resultLabels(n) = uicontrol(resultChildPanel, 'style', 'text', ...
             'fontsize', fontsize1, 'horizontalalignment', 'left',...
             'units', 'normalized', 'position', [0, 1-.2*n, 1, .2]);
     end
-     
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-	resultMainPanel = uipanel('Parent',resultPanel,'bordertype', 'none',...
+
+resultMainPanel = uipanel('Parent',resultPanel,'bordertype', 'none',...
 		 'Position',[0.7 0.2 .3 .8]);
-                                                                           if debug == true
-                                                                               set (resultMainPanel, 'bordertype', 'etchedout') ;
-                                                                           end
-	result_label = uicontrol(resultMainPanel, 'style', 'text', ...
+
+    result_label = uicontrol(resultMainPanel, 'style', 'text', ...
 		'fontsize', fontsize1, ...
 		'units', 'normalized', 'position', [0, .5, 1, .5]);
 	intervals_label = uicontrol(resultMainPanel, 'style', 'text', ...
 		'units', 'normalized', ...
 		'fontsize', fontsize1, ...
 		'position', [0, 0, 1, .5]);
-		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-	bottomPanel = uipanel('Parent',resultPanel,'bordertype', 'none',...
+
+bottomPanel = uipanel('Parent',resultPanel,'bordertype', 'none',...
 		 'Position',[0 0 1 .2]);
-                                                                           if debug == true
-                                                                               set (bottomPanel, 'bordertype', 'etchedout') ;
-                                                                           end
 close_btn = uicontrol(bottomPanel, 'style', 'pushbutton', ...
         'string', label_close, 'tooltipString', tooltip_close, ...
 		'units', 'normalized', 'position', [0.8, 0, .2, 1], ...
@@ -249,8 +194,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
 		'callback', @clear_callback); 
                                                                            
 %------------------------ Handlers --------------------------------------%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
     function sel_callback(~,~)
         pos = get (matrixPanel, 'position');
         if  pos(1) == 0 
@@ -270,11 +213,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         end
     end
 
-    function test_callback(~,~)
-        random_callback(0, 0) ;
-    end
-
-
     app_x = 100;
 	app_y = 200;
 	graph_count = 0;
@@ -283,7 +221,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         dim = getDim () ;
         eigA = zeros (1, dim) ;
         eigB = zeros (1, dim) ;
-        
         % Choosing the input method
         pos = get (matrixPanel, 'position');
         if  pos(1) == 0 
@@ -291,7 +228,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
             eigD = eig(D) ;
             rowA = getVectorValues(vectorA.children, dim) ;
             rowB = getVectorValues(vectorB.children, dim) ;
-
             for j=1:length(eigD)
                 e = [1 eigD(j) eigD(j)^2 eigD(j)^3 eigD(j)^4 eigD(j)^4]';
                 eigA (j) = rowA*e(1:dim+1) ;
@@ -301,19 +237,15 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
             eigA = getEigValues(eigInput1);
             eigB = getEigValues(eigInput2);
         end
-        
-        
         if isempty(eigA) || isempty(eigB)
             return;
         end
-		
 		app_x = app_x + 80;
 		app_y = app_y - 80;
 		graph_count = graph_count + 1;
 		figure('Position', [app_x app_y, 600, 500],...
 		'Name', [label_graph ' ' num2str(graph_count)],...  % Title figure
-		'NumberTitle', 'off'... % Do not show figure number
-		);      
+		'NumberTitle', 'off');      
 		[intervals, intervalsCell]= cone(eigA, eigB);
         set (close_btn, 'enable', 'on') ;
 		
@@ -324,8 +256,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         for n=dim+1:MAX_DIM
     		set(resultLabels(n), 'string', '');
         end
-		
-		
 		% Set main result label.
 		if isempty(intervals)
 			set(result_label, 'string', label_result_bad);
@@ -342,8 +272,8 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
 		for n=1:graph_count
 			try
 				close([label_graph ' ' num2str(n)]);
-			catch
-				% Do nothing: the window was already closed.
+            catch me
+                display(me);
 			end
 		end
 		app_x = 100;
@@ -391,7 +321,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
 	
 %------------------------ Functions --------------------------------------%		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
     function d = getDim ()
         d = str2double(get(dimText, 'string'));
     end
@@ -499,7 +428,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         end
 	end
 
-
 %------------------------ Vector input -----------------------------------%		
     function vector = createVector(dim)
         dim = dim+1;
@@ -546,8 +474,6 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
             vector(j)=str2double(val);
         end
     end
-
-
 
 %------------------------ Matrix input -----------------------------------%		
 	function matrix = createTable(rows, cols)
@@ -610,5 +536,4 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
 			end
 		end
 	end
-	
 end

@@ -1,14 +1,6 @@
 function application2
-debug = false;
-%format short;
-%whitebg(ax1, 'blue');
-%colordef none
-%text(.1,.5,'\tau', 'color', [0 0 0]); 
-
-
 	fontsize0 = 12;
 	fontsize1 = 15;
-
     figure_width = 600;
     figure_height = 500;
     screen_size = get(0,'ScreenSize');
@@ -20,15 +12,7 @@ debug = false;
     resetFigureVars();
     image1 = imread('circles_right.png');                                                                           
     image2 = imread('circles.png');                                                                           
-
-
-	
-	% Error strings
-	label_error = 'Ошибка';
-	err_incorrect_cell = 'Вы ввели некорректное значение в ячейке ';
-	
-	
-	label_graph = 'График';
+    label_graph = 'График';
 	appTitle = 'Устойчивость нейронных сетей';
 	header = 'Анализ устойчивости нейронных сетей';
 	header_eq = 'с большим количеством нейронов';
@@ -43,7 +27,6 @@ debug = false;
     label_right = 'правым соседним нейроном a =';
     label_left = 'левым соседним нейроном b =';
     label_set_tau = 'Величина запаздывания tau = ';
-    
 	label_rand = 'Заполнить';
 	tip_rand = 'Заполняет входные данные случайными значениями';
 	label_clear = 'Очистить';
@@ -56,7 +39,7 @@ debug = false;
 	label_result_bad = 'Уравнение неустойчиво.';
 
 	% Create a figure that will have a uitable, axes and checkboxes
-f = figure('Position', [50, 100, 900, 700],...
+    f = figure('Position', [50, 100, 900, 700],...
 		'Name', appTitle,...  % Title figure
 		'NumberTitle', 'off',... % Do not show figure number
 		'MenuBar', 'none');      % Hide standard menu bar menus
@@ -98,19 +81,13 @@ rb2 = uicontrol('parent',group, 'Style','Radio',...
 % first method
 inputPanel1 = uipanel('Parent',inputPanel, 'bordertype', 'none',...
                     'Position',[0 0 1 .65]);
-                                                                           if debug == true
-                                                                               set (inputPanel1, 'bordertype', 'etchedout') ;
-                                                                           end
-method_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize1, 'string', label_method1, ...
-		'units', 'normalized', 'position', [0, 0.85, 1, .2]);
-model_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_model1, ...
-		'units', 'normalized', 'position', [0, 0.7, 1, .1]);
+method_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize1, ...
+    'string', label_method1, 'units', 'normalized', 'position', [0, 0.85, 1, .2]);
+model_text = uicontrol(inputPanel1, 'style', 'text', 'fontsize', fontsize0, ...
+    'string', label_model1, 'units', 'normalized', 'position', [0, 0.7, 1, .1]);
     
 leftPanel1 = uipanel('Parent',inputPanel1, 'bordertype', 'none',...
                     'Position',[0 0 .6 .7]);
-                                                                           if debug == true
-                                                                               set (leftPanel1, 'bordertype', 'etchedout') ;
-                                                                           end
 
 uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_intens, ...
 		'units', 'normalized', 'position', [0, 0.7, 1, .2]);
@@ -118,27 +95,23 @@ uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_in
 uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_right, ...
 		'units', 'normalized', 'position', [0, 0.5, .6, .15]);
 input_a = uicontrol(leftPanel1, 'style', 'edit', ...
-    'string', num2str (rand (1)*2-1, 4), 'backgroundcolor', 'w',...
+    'string', num2str(rand(1)*2-1, 4), 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.6 .5 .4 .15]);
 
 uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_left, ...
 		'units', 'normalized', 'position', [0, 0.3, .6, .15]);
 input_b = uicontrol(leftPanel1, 'style', 'edit', ...
-    'string', num2str (rand (1)*2-1, 4), 'backgroundcolor', 'w',...
+    'string', num2str(rand(1)*2-1, 4), 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.6 .3 .4 .15]);
 
 uicontrol(leftPanel1, 'style', 'text', 'fontsize', fontsize0, 'string', label_set_tau, ...
 		'units', 'normalized', 'position', [0, 0, .6, .15]);
 input_tau = uicontrol(leftPanel1, 'style', 'edit', ...
-    'string', num2str (rand (1), 4), 'backgroundcolor', 'w',...
+    'string', num2str(rand(1), 4), 'backgroundcolor', 'w',...
     'units', 'normalized', 'position', [0.6 .05 .4 .15]);
 
 rightPanel1 = uipanel('Parent',inputPanel1, 'bordertype', 'none',...
                     'Position',[.75 0 .25 .7]);
-                
-                                                                           if debug == true
-                                                                               set (rightPanel1, 'bordertype', 'etchedout') ;
-                                                                           end
 ax = axes('parent', rightPanel1, 'position', [0 0 1 1]);
 image( image1, 'parent', ax);
                                             
@@ -160,9 +133,6 @@ interval_text = uicontrol(resultPanel, 'style', 'text', ...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	bottomPanel = uipanel('Parent',resultPanel,'bordertype', 'none',...
 		 'Position',[0 0 1 .2]);
-                                                                           if debug == true
-                                                                               set (bottomPanel, 'bordertype', 'etchedout') ;
-                                                                           end
 close_btn = uicontrol(bottomPanel, 'style', 'pushbutton', ...
         'string', label_close, 'tooltipString', tooltip_close, ...
 		'units', 'normalized', 'position', [0.8, 0, .2, 1], ...
@@ -194,13 +164,13 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
     function sel_callback(source,~)
         if  get(source,'SelectedObject') == rb1
             % show method 1
-            set (method_text, 'string', label_method1);
-            set (model_text, 'string', label_model1);
+            set(method_text, 'string', label_method1);
+            set(model_text, 'string', label_model1);
             image( image1, 'parent', ax);
         else
             % show method 2
-            set (method_text, 'string', label_method2);
-            set (model_text, 'string', label_model2);
+            set(method_text, 'string', label_method2);
+            set(model_text, 'string', label_model2);
             image( image2, 'parent', ax);
         end
     end
@@ -217,21 +187,21 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         
         % determine the algorithm to calculate the result.
         if  get(group,'SelectedObject') == rb1 
-            result = cone_solver2 (a, b, tau, 1, 7, 0.5);
+            result = coneSolver(a, b, tau, 1);
         elseif get(group,'SelectedObject') == rb2
-            result = cone_solver2 (a, b, tau, 2, 7, 0.5);
+            result = coneSolver(a, b, tau, 2);
         end
         
         % check for result and set label.
         if isempty(result)
-            set (result_text, 'string', label_result_bad);
-            set (interval_text, 'string', '');
+            set(result_text, 'string', label_result_bad);
+            set(interval_text, 'string', '');
         else
-            set (result_text, 'string', label_result_good);
-            set (interval_text, 'string', ...
+            set(result_text, 'string', label_result_good);
+            set(interval_text, 'string', ...
                 ['(' num2str(result(1)) ', ' num2str(result(2)) ').' ]);
         end
-        set (close_btn, 'enable', 'on') ;
+        set(close_btn, 'enable', 'on') ;
     end
     
     function resetFigureVars()
@@ -245,19 +215,19 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         for n=1:graph_count
             try
                 close([label_graph ' ' num2str(n)]);
-            catch
-                % Do nothing: the window was already closed.
+            catch e
+                display(e);
             end
         end
         resetFigureVars();
-        set (close_btn, 'enable', 'off') ;
+        set(close_btn, 'enable', 'off') ;
 	end
 	
 	% Regenerate input values.
 	function random_callback(~, ~)
-        set(input_a, 'string', num2str(rand (1)*2-1,4));
-        set(input_b, 'string', num2str(rand (1)*2-1,4));
-        set(input_tau, 'string', num2str(rand (1)*5,4));
+        set(input_a, 'string', num2str(rand(1)*2-1,4));
+        set(input_b, 'string', num2str(rand(1)*2-1,4));
+        set(input_tau, 'string', num2str(rand(1)*5,4));
 	end
 
 	% Clear input values.
