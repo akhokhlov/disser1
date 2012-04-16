@@ -62,7 +62,7 @@ public class MatlabSourceConverter
 				String line = scan.nextLine();
 				if (line.trim().length() > 1)
 				{
-					writer.println(line);
+					writer.println(line.replaceAll("\t", "    "));
 				}
 			}
 			writer.println("\\end{verbatim}");
