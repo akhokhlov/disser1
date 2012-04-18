@@ -187,9 +187,9 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
         
         % determine the algorithm to calculate the result.
         if  get(group,'SelectedObject') == rb1 
-            result = coneSolver(a, b, tau, 1);
+            result = pointsPlotter2(a, b, tau, 1);
         elseif get(group,'SelectedObject') == rb2
-            result = coneSolver(a, b, tau, 2);
+            result = pointsPlotter2(a, b, tau, 2);
         end
         
         % check for result and set label.

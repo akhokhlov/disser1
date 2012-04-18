@@ -246,7 +246,7 @@ uicontrol(bottomPanel, 'style', 'pushbutton', ...
 		figure('Position', [app_x app_y, 600, 500],...
 		'Name', [label_graph ' ' num2str(graph_count)],...  % Title figure
 		'NumberTitle', 'off');      
-		[intervals, intervalsCell]= cone(eigA, eigB);
+        [intervals, intervalsCell]= pointsPlotter(eigA, eigB);
         set (close_btn, 'enable', 'on') ;
 		
 		dim = str2double(get(dimText, 'string'));
